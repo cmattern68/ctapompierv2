@@ -1,0 +1,59 @@
+{
+  "id": 1,
+  "name": "Feu d'Habitation",
+  "pos": {
+    "lon": 7.1874734,
+    "lat": 48.1807025
+  },
+  "dialog": [
+    {
+      "origin": 0,
+      "message": "Urgence les pompiers bonjour"
+    },
+    {
+      "origin": 1,
+      "message": "Au secours, il y a le feu !!!"
+    },
+    {
+      "origin": 0,
+      "message": "A quelle addresse ?"
+    },
+    {
+      "origin": 1,
+      "message": "Au 16 rue des frenes à Freland",
+      "locate": true
+    },
+    {
+      "origin": 0,
+      "message": "Et qu'est-ce qui brule ?"
+    },
+    {
+      "origin": 1,
+      "message": "Une maison !"
+    },
+    {
+      "origin": 0,
+      "message": "Il y a des victimes "
+    },
+    {
+      "origin": 1,
+      "message": "Non ils sont en vacances"
+    },
+    {
+      "origin": 0,
+      "message": "Est-ce qu'il y a un risque de propagation autour de la maison ?"
+    },
+    {
+      "origin": 1,
+      "message": "Non"
+    },
+    {
+      "origin": 0,
+      "message": "Très bien, les secours sont partis, vous pouvez raccrocher."
+    },
+    {
+      "origin": 1,
+      "message": "Merci !!"
+    }
+  ]
+}

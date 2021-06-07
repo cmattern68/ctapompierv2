@@ -1,0 +1,25 @@
+{
+  "name": "cta_pompierv2",
+  "version": "1.0.0",
+  "description": "Web Game of French Firefigther call center",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmattern68/ctapompierv2.git"
+  },
+  "author": "Corentin Mattern",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cmattern68/ctapompierv2/issues"
+  },
+  "homepage": "https://github.com/cmattern68/ctapompierv2#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-validator": "^6.11.1"
+  }
+}

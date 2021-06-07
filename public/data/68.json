@@ -1,0 +1,338 @@
+{
+  "id": "68",
+  "name": "SDIS 68",
+  "full_name": "Service Départemental d'Incendie et de Secours du Haut-Rhin",
+  "nearest_county": [
+    67,
+    88,
+    90
+  ],
+  "csp": [
+    {
+      "id": "68_csp_1",
+      "type": "csp",
+      "name": "CSP Colmar",
+      "lon": "7.36167",
+      "lat": "48.094"
+    },
+    {
+      "id": "68_csp_2",
+      "type": "csp",
+      "name": "CSP Mulhouse",
+      "lon": "7.335",
+      "lat": "47.7575"
+    },
+    {
+      "id": "68_csp_3",
+      "type": "csp",
+      "name": "CSP Saint-Louis",
+      "lon": "7.55352",
+      "lat": "47.5866"
+    }
+  ],
+  "cis": [
+    {
+      "id": "68_cis_1",
+      "type": "cis",
+      "name": "CIS SAINTE MARIE AUX MINES",
+      "lon": "7.19167",
+      "lat": "48.2508"
+    },
+    {
+      "id": "68_cis_2",
+      "type": "cis",
+      "name": "CIS RIBEAUVILLE",
+      "lon": "7.32567",
+      "lat": "48.1917"
+    },
+    {
+      "id": "68_cis_3",
+      "type": "cis",
+      "name": "CIS LAPOUTROIE",
+      "lon": "7.16817",
+      "lat": "48.1525"
+    },
+    {
+      "id": "68_cis_4",
+      "type": "cis",
+      "name": "CIS ORBEY",
+      "lon": "7.16083",
+      "lat": "48.128"
+    },
+    {
+      "id": "68_cis_5",
+      "type": "cis",
+      "name": "CIS KAYSERSBERG",
+      "lon": "7.25367",
+      "lat": "48.1457"
+    },
+    {
+      "id": "68_cis_6",
+      "type": "cis",
+      "name": "CIS OSTHEIM",
+      "lon": "7.36967",
+      "lat": "48.16"
+    },
+    {
+      "id": "68_cis_7",
+      "type": "cis",
+      "name": "CIS MUNTZENHEIM",
+      "lon": "7.47567",
+      "lat": "48.1012"
+    },
+    {
+      "id": "68_cis_8",
+      "type": "cis",
+      "name": "CIS TURCKHEIM",
+      "lon": "7.28",
+      "lat": "48.0868"
+    },
+    {
+      "id": "68_cis_9",
+      "type": "cis",
+      "name": "CIS SOULTZEREN",
+      "lon": "7.10317",
+      "lat": "48.0662"
+    },
+    {
+      "id": "68_cis_10",
+      "type": "cis",
+      "name": "CIS MUNSTER",
+      "lon": "7.14017",
+      "lat": "48.0415"
+    },
+    {
+      "id": "68_cis_11",
+      "type": "cis",
+      "name": "CIS METZERAL",
+      "lon": "7.07417",
+      "lat": "48.0177"
+    },
+    {
+      "id": "68_cis_12",
+      "type": "cis",
+      "name": "CIS NEUF BRISACH",
+      "lon": "7.532",
+      "lat": "48.0222"
+    },
+    {
+      "id": "68_cis_13",
+      "type": "cis",
+      "name": "CIS FESSENHEIM",
+      "lon": "7.53833",
+      "lat": "47.9135"
+    },
+    {
+      "id": "68_cis_14",
+      "type": "cis",
+      "name": "CIS ROUFFACH",
+      "lon": "7.30533",
+      "lat": "47.9578"
+    },
+    {
+      "id": "68_cis_15",
+      "type": "cis",
+      "name": "CIS SOULTZMATT",
+      "lon": "7.23983",
+      "lat": "47.9622"
+    },
+    {
+      "id": "68_cis_16",
+      "type": "cis",
+      "name": "CIS KRUTH-ODEREN",
+      "lon": "6.974",
+      "lat": "47.9152"
+    },
+    {
+      "id": "68_cis_17",
+      "type": "cis",
+      "name": "CIS HAUT FLORIVAL",
+      "lon": "7.186",
+      "lat": "47.9292"
+    },
+    {
+      "id": "68_cis_18",
+      "type": "cis",
+      "name": "CIS GUEBWILLER",
+      "lon": "7.21",
+      "lat": "47.9072"
+    },
+    {
+      "id": "68_cis_19",
+      "type": "cis",
+      "name": "CIS SOULTZ",
+      "lon": "7.23117",
+      "lat": "47.8838"
+    },
+    {
+      "id": "68_cis_20",
+      "type": "cis",
+      "name": "CIS SAINT AMARIN",
+      "lon": "7.03",
+      "lat": "47.8725"
+    },
+    {
+      "id": "68_cis_21",
+      "type": "cis",
+      "name": "CIS ENSISHEIM",
+      "lon": "7.34983",
+      "lat": "47.871"
+    },
+    {
+      "id": "68_cis_22",
+      "type": "cis",
+      "name": "CIS MASEVAUX",
+      "lon": "7.00183",
+      "lat": "47.7725"
+    },
+    {
+      "id": "68_cis_23",
+      "type": "cis",
+      "name": "CIS CERNAY WITTELSHEIM",
+      "lon": "7.16617",
+      "lat": "47.8022"
+    },
+    {
+      "id": "68_cis_24",
+      "type": "cis",
+      "name": "CIS THANN",
+      "lon": "7.10367",
+      "lat": "47.8097"
+    },
+    {
+      "id": "68_cis_25",
+      "type": "cis",
+      "name": "CIS WITTENHEIM",
+      "lon": "7.32817",
+      "lat": "47.8133"
+    },
+    {
+      "id": "68_cis_26",
+      "type": "cis",
+      "name": "CIS ILLZACH",
+      "lon": "7.34417",
+      "lat": "47.7767"
+    },
+    {
+      "id": "68_cis_27",
+      "type": "cis",
+      "name": "CIS OTTMARSHEIM",
+      "lon": "7.50017",
+      "lat": "47.7867"
+    },
+    {
+      "id": "68_cis_28",
+      "type": "cis",
+      "name": "CIS BURNHAUPT LE BAS",
+      "lon": "7.16733",
+      "lat": "47.718"
+    },
+    {
+      "id": "68_cis_29",
+      "type": "cis",
+      "name": "CIS MONTREUX VIEUX",
+      "lon": "7.0225",
+      "lat": "47.6185"
+    },
+    {
+      "id": "68_cis_30",
+      "type": "cis",
+      "name": "CIS DANNEMARIE",
+      "lon": "7.11683",
+      "lat": "47.628"
+    },
+    {
+      "id": "68_cis_31",
+      "type": "cis",
+      "name": "CIS STRUETH",
+      "lon": "7.12417",
+      "lat": "47.5833"
+    },
+    {
+      "id": "68_cis_32",
+      "type": "cis",
+      "name": "CIS ALTKIRCH",
+      "lon": "7.23045",
+      "lat": "47.6252"
+    },
+    {
+      "id": "68_cis_33",
+      "type": "cis",
+      "name": "CIS MAGSTATT LE BAS",
+      "lon": "7.4115",
+      "lat": "47.637"
+    },
+    {
+      "id": "68_cis_34",
+      "type": "cis",
+      "name": "CIS BLOTZHEIM",
+      "lon": "7.50033",
+      "lat": "47.6023"
+    },
+    {
+      "id": "68_cis_35",
+      "type": "cis",
+      "name": "CIS MUESPACH LE HAUT",
+      "lon": "7.40083",
+      "lat": "47.5468"
+    },
+    {
+      "id": "68_cis_36",
+      "type": "cis",
+      "name": "CIS OLTINGUE",
+      "lon": "7.394",
+      "lat": "47.4887"
+    },
+    {
+      "id": "68_cis_37",
+      "type": "cis",
+      "name": "CIS DURMENACH",
+      "lon": "7.33917",
+      "lat": "47.5282"
+    },
+    {
+      "id": "68_cis_38",
+      "type": "cis",
+      "name": "CIS WALDIGHOFFEN",
+      "lon": "7.31133",
+      "lat": "47.5503"
+    },
+    {
+      "id": "68_cis_39",
+      "type": "cis",
+      "name": "CIS RUEDERBACH",
+      "lon": "7.2705",
+      "lat": "47.564"
+    },
+    {
+      "id": "68_cis_40",
+      "type": "cis",
+      "name": "CIS HIRSINGUE",
+      "lon": "7.2565",
+      "lat": "47.5868"
+    }
+  ],
+  "cpi": [
+    {
+      "id": "68_cpi_1",
+      "type": "cpi",
+      "name": "CPI Wasserbourg",
+      "lon": "7.16133",
+      "lat": "48.0028"
+    },
+    {
+      "id": "68_cpi_2",
+      "type": "cpi",
+      "name": "CPI Munchhouse",
+      "lon": "7.45117",
+      "lat": "47.8685"
+    },
+    {
+      "id": "68_cpi_3",
+      "type": "cpi",
+      "name": "CPI Deux Ferrette",
+      "lon": "7.30817",
+      "lat": "47.4988"
+    }
+  ]
+}

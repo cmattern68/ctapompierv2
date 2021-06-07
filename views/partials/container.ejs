@@ -1,0 +1,22 @@
+<div class="content-container box">
+    <ul class="nav nav-tabs" id="missionManagerTab" role="tablist">
+        <li class="nav-item" role="missions-overview">
+            <button class="nav-link active btn-lg" id="missions-tab" data-bs-toggle="tab" data-bs-target="#missions" type="button" role="tab" aria-controls="home" aria-selected="true">Interventions en cours</button>
+        </li>
+        <li class="nav-item" role="vehicles-overview">
+            <button class="nav-link btn-lg" id="vehicles-tab" data-bs-toggle="tab" data-bs-target="#vehicles" type="button" role="tab" aria-controls="profile" aria-selected="false">Véhicules</button>
+        </li>
+        <li class="nav-item" role="radios-overview">
+            <button class="nav-link btn-lg" id="radios-tab" data-bs-toggle="tab" data-bs-target="#radios" type="button" role="tab" aria-controls="contact" aria-selected="false">Radio</button>
+        </li>
+        <li class="nav-item" role="create-mission">
+            <button class="nav-link btn-lg" id="mission-tab" data-bs-toggle="tab" data-bs-target="#mission" type="button" role="tab" aria-controls="contact" aria-selected="false">Créer une nouvelle intervention</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="missionManager">
+        <%- include('../partials/missions'); %>
+        <%- include('../partials/vehicles'); %>
+        <%- include('../partials/radios'); %>
+        <%- include('../partials/mission'); %>
+    </div>
+</div>
