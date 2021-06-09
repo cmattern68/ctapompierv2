@@ -82,6 +82,16 @@ switchTownBorder = () => {
 	TownBorderLayer.refresh();
 }
 
+redraw = () => {
+	switchCSP();
+	switchCIS();
+	switchCPI();
+	switchCountyBorder();
+	switchBoroughBorder();
+	switchCantonBorder();
+	switchTownBorder();
+}
+
 $(document).ready(function() {
 	$("#switchCSP").click(function() {
 		switchCSP();

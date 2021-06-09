@@ -204,3 +204,15 @@ textarea[name=observations] {
     height: 4px;
     bottom: 0.12em;
 }
+
+.btn-msg-next {
+    margin-top: 1em;
+}
+
+.origin-call {
+    padding-top: 0.3em;
+}
+
+.right {
+    float: right !important;
+}

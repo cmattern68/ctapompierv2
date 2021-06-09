@@ -1,10 +1,6 @@
 {
   "id": 1,
   "name": "Feu d'Habitation",
-  "pos": {
-    "lon": 7.1874734,
-    "lat": 48.1807025
-  },
   "dialog": [
     {
       "origin": 0,
@@ -20,7 +16,7 @@
     },
     {
       "origin": 1,
-      "message": "Au 16 rue des frenes à Freland",
+      "message": "{{address}}",
       "locate": true
     },
     {
@@ -33,7 +29,7 @@
     },
     {
       "origin": 0,
-      "message": "Il y a des victimes "
+      "message": "Il y a des victimes ?"
     },
     {
       "origin": 1,

@@ -7,6 +7,8 @@ init = (county) => {
 		.then(res => {
 			pinStations()
 				.then(res => {
+					MissionCreator().then(res => {
+					}).catch(err => {});
 			}).catch(err => {
 				console.log(err);
 			})

@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f4afbdb4-e388-475f-a729-3e8efd0b8153" name="Default Changelist" comment="" />
+    <list default="true" id="f4afbdb4-e388-475f-a729-3e8efd0b8153" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Layout/DialogPopup.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/Layout/DialogPopup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Layout/FooterDialogLayout.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/Layout/FooterDialogLayout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Layout/HeaderDialogLayout.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/Layout/HeaderDialogLayout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/CallManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/CallManager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/Filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/Filter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/MapLayer.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/MapLayer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/Missions.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/Missions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/Script.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/Script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/missions/1.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/missions/1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/include/js.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/include/js.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/head.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/head.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/mission.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/mission.ejs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -11,8 +26,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -31,7 +46,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.language" />
+    <property name="settings.editor.selected.configurable" value="discord-application" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -48,7 +63,9 @@
       <option name="presentableId" value="Default" />
       <updated>1623013641806</updated>
       <workItem from="1623013642974" duration="10955000" />
-      <workItem from="1623067187660" duration="36661000" />
+      <workItem from="1623067187660" duration="39238000" />
+      <workItem from="1623153667700" duration="19413000" />
+      <workItem from="1623243891588" duration="10464000" />
     </task>
     <servers />
   </component>
@@ -60,13 +77,13 @@
       <screen x="0" y="31" width="1920" height="1049" />
     </state>
     <state x="693" y="306" width="534" height="506" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.31.1920.1049/1920.0.1920.1080@0.31.1920.1049" timestamp="1623014131655" />
-    <state x="449" y="193" width="1022" height="733" key="SettingsEditor" timestamp="1623105594077">
+    <state x="449" y="193" width="1022" height="733" key="SettingsEditor" timestamp="1623194793966">
       <screen x="0" y="31" width="1920" height="1049" />
     </state>
-    <state x="449" y="193" width="1022" height="733" key="SettingsEditor/0.31.1920.1049/1920.0.1920.1080@0.31.1920.1049" timestamp="1623105594077" />
-    <state x="623" y="263" key="search.everywhere.popup" timestamp="1623015791163">
+    <state x="449" y="193" width="1022" height="733" key="SettingsEditor/0.31.1920.1049/1920.0.1920.1080@0.31.1920.1049" timestamp="1623194793966" />
+    <state x="623" y="263" width="672" height="678" key="search.everywhere.popup" timestamp="1623161536890">
       <screen x="0" y="31" width="1920" height="1049" />
     </state>
-    <state x="623" y="263" key="search.everywhere.popup/0.31.1920.1049/1920.0.1920.1080@0.31.1920.1049" timestamp="1623015791163" />
+    <state x="623" y="263" width="672" height="678" key="search.everywhere.popup/0.31.1920.1049/1920.0.1920.1080@0.31.1920.1049" timestamp="1623161536890" />
   </component>
 </project>

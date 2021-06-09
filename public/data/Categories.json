@@ -1,0 +1,85 @@
+{
+  "cat": [
+    {
+      "id": 0,
+      "label": "Accident",
+      "subcat": [
+        {
+          "label": "Accident de Circulation"
+        },
+        {
+          "label": "Accident de Circulation avec Désincarceration"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "label": "Incendie",
+      "subcat": [
+        {
+          "label": "Feu d'Habitation"
+        },
+        {
+          "label": "Feu d'Exploitation Agricole"
+        },
+        {
+          "label": "Feu de Voiture"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "label": "Opérations Diverses",
+      "subcat": [
+        {
+          "label": "Epuisement de Locaux"
+        },
+        {
+          "label": "Dégagement de Voie Publique"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "label": "Secours à Personne",
+      "subcat": [
+        {
+          "label": "Malaise à Domicile ou dans Lieu Privée"
+        },
+        {
+          "label": "Carence d'Ambulance Privée"
+        },
+        {
+          "label": "AVC"
+        },
+        {
+          "label": "Arrêt Cardio-Respiratoire"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "label": "Opérations Spécifiques",
+      "subcat": [
+        {
+          "label": "Polution"
+        },
+        {
+          "label": "Effrondrement de Batiment"
+        },
+        {
+          "label": "Risque RAD"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "label": "Autre",
+      "subcat": [
+        {
+          "label": "Manoeuvre"
+        }
+      ]
+    }
+  ]
+}
