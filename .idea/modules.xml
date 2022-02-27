@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/CTA_PompierV2.iml" filepath="$PROJECT_DIR$/.idea/CTA_PompierV2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ctapompierv2.iml" filepath="$PROJECT_DIR$/.idea/ctapompierv2.iml" />
     </modules>
   </component>
 </project>

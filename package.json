@@ -4,7 +4,8 @@
   "description": "Web Game of French Firefigther call center",
   "main": "server.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,6 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-validator": "^6.11.1"
-  }
+  },
+  "keywords": []
 }
