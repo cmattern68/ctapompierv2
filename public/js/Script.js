@@ -1,6 +1,7 @@
 let County = null;
 
 init = (county) => {
+	disableScroll();
 	County = county;
 	//$('.olControlZoom').remove();
 	delimitBorder()
@@ -19,6 +20,7 @@ init = (county) => {
 
 gameLoop = () => {
 	ManageCall();
+	eventCatcher();
 }
 
 setInterval(gameLoop, 500);

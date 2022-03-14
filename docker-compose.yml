@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    container_name: ctapompier
+    networks:
+      - ctapompier
+    ports:
+      - "80:3030"
+    volumes:
+      - .:/ctapompier/
+      - /ctapompier/node_modules
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  postgres:
+    container_name: ctapompier_db
+    image: postgis/postgis:latest
+    environment:
+      POSTGRES_USER: ctapompier_usr
+      POSTGRES_PASSWORD: fmB63UmmaTGxDm9S
+      POSTGRES_DB: ctapompier
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    networks:
+      - ctapompier
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+volumes:
+  postgres:
+
+networks:
+  ctapompier:
+    driver: bridge

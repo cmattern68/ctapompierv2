@@ -5,7 +5,7 @@ let stationsMarker = {};
 
 pinStations = () => {
 	return new Promise((resolve, reject) => {
-		const county = JSON.parse(read("/data/" + County + ".json"));
+		const county = httpGet("http://localhost/stations?county=" + County);
 		drawCSP(county.csp);
 		drawCIS(county.cis);
 		drawCPI(county.cpi);
@@ -18,7 +18,7 @@ drawCSP = (csp) => {
 		const marker = drawMarker(
 			{x: 16, y: 16},
 			"/assets/csp.png",
-			{name: station.name, lon: station.lon, lat: station.lat, id: station.id, title: station.name},
+			{name: station.city, lon: station.coordinates.coordinates[0], lat: station.coordinates.coordinates[1], id: station.id, title: station.city},
 			CSPLayer
 		);
 		if (CSPLayer === null) {
@@ -34,7 +34,7 @@ drawCIS = (cis) => {
 		const marker = drawMarker(
 			{x: 16, y: 16},
 			"/assets/cis.png",
-			{name: station.name, lon: station.lon, lat: station.lat, id: station.id, title: station.name},
+			{name: station.city, lon: station.coordinates.coordinates[0], lat: station.coordinates.coordinates[1], id: station.id, title: station.city},
 			CISLayer
 		);
 		if (CISLayer === null) {
@@ -50,7 +50,7 @@ drawCPI = (cpi) => {
 		const marker = drawMarker(
 			{x: 16, y: 16},
 			"/assets/cpi.png",
-			{name: station.name, lon: station.lon, lat: station.lat, id: station.id, title: station.name},
+			{name: station.city, lon: station.coordinates.coordinates[0], lat: station.coordinates.coordinates[1], id: station.id, title: station.city},
 			CPILayer
 		);
 		if (CPILayer === null) {

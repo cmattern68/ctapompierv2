@@ -25,3 +25,10 @@ tagToText = (tag, text, replace) => {
 getRandomInt = (max) => {
 	return Math.floor(Math.random() * max);
 }
+
+httpGet = (theUrl) =>  {
+	let xmlHttp = new XMLHttpRequest();
+	xmlHttp.open( "GET", theUrl, false );
+	xmlHttp.send( null );
+	return JSON.parse(xmlHttp.responseText);
+}
