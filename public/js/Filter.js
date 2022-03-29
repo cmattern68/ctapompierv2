@@ -74,6 +74,11 @@ switchTownBorder = () => {
 	}
 }
 
+allBorderUnchecked = () => {
+	if (!($('#switchCountyBorder').is(':checked')) && !($('#switchBoroughBorder').is(':checked')) && !($('#switchCantonBorder').is(':checked')) && !($('#switchTownBorder').is(':checked')))
+		$('#switchCountyBorder').trigger('click');
+}
+
 redraw = () => {
 	switchCSP();
 	switchCIS();
@@ -96,14 +101,18 @@ $(document).ready(function() {
 	});
 	$("#switchCountyBorder").click(function() {
 		switchCountyBorder();
+		allBorderUnchecked();
 	});
 	$("#switchBoroughBorder").click(function() {
 		switchBoroughBorder();
+		allBorderUnchecked();
 	});
 	$("#switchCantonBorder").click(function() {
 		switchCantonBorder();
+		allBorderUnchecked();
 	});
 	$("#switchTownBorder").click(function() {
 		switchTownBorder();
+		allBorderUnchecked();
 	});
 });
