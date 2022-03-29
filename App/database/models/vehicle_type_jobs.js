@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       vehicle_type_jobs.belongsTo(models.vehicle_job, {
         foreignKey: 'vehicle_job',
-        as: 'vehicle_job'
+        as: 'vehicle_type_jobs'
       });
       vehicle_type_jobs.belongsTo(models.vehicle_types, {
         foreignKey: 'vehicle_type',

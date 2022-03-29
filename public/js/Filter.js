@@ -24,62 +24,54 @@ switchCPI = () => {
 
 switchCountyBorder = () => {
 	if ($('#switchCountyBorder').is(':checked')) {
-		CountyBorderLayer.style = borderDisplayStyle;
-		if ($('#switchBoroughBorder').is(':checked'))
-			$('#switchBoroughBorder').trigger('click');
-		if ($('#switchCantonBorder').is(':checked'))
-			$('#switchCantonBorder').trigger('click');
-		if ($('#switchTownBorder').is(':checked'))
-			$('#switchTownBorder').trigger('click');
-	} else {
-		CountyBorderLayer.style = borderInvisibleStyle;
+		delimitCountyBorder().then(res => {
+			if ($('#switchBoroughBorder').is(':checked'))
+				$('#switchBoroughBorder').trigger('click');
+			if ($('#switchCantonBorder').is(':checked'))
+				$('#switchCantonBorder').trigger('click');
+			if ($('#switchTownBorder').is(':checked'))
+				$('#switchTownBorder').trigger('click');
+		});
 	}
-	CountyBorderLayer.refresh();
 }
 
 switchBoroughBorder = () => {
 	if ($('#switchBoroughBorder').is(':checked')) {
-		BoroughBorderLayer.style = borderDisplayStyle;
-		if ($('#switchCountyBorder').is(':checked'))
-			$('#switchCountyBorder').trigger('click');
-		if ($('#switchCantonBorder').is(':checked'))
-			$('#switchCantonBorder').trigger('click');
-		if ($('#switchTownBorder').is(':checked'))
-			$('#switchTownBorder').trigger('click');
-	} else {
-		BoroughBorderLayer.style = borderInvisibleStyle;
+		delimitBoroughBorder().then(res => {
+			if ($('#switchCountyBorder').is(':checked'))
+				$('#switchCountyBorder').trigger('click');
+			if ($('#switchCantonBorder').is(':checked'))
+				$('#switchCantonBorder').trigger('click');
+			if ($('#switchTownBorder').is(':checked'))
+				$('#switchTownBorder').trigger('click');
+		});
 	}
-	BoroughBorderLayer.refresh();
 }
 
 switchCantonBorder = () => {
 	if ($('#switchCantonBorder').is(':checked')) {
-		CantonBorderLayer.style = borderDisplayStyle;
-		if ($('#switchCountyBorder').is(':checked'))
-			$('#switchCountyBorder').trigger('click');
-		if ($('#switchBoroughBorder').is(':checked'))
-			$('#switchBoroughBorder').trigger('click');
-		if ($('#switchTownBorder').is(':checked'))
-			$('#switchTownBorder').trigger('click');
-	} else {
-		CantonBorderLayer.style = borderInvisibleStyle;
+		delimitCantonBorder().then(res => {
+			if ($('#switchCountyBorder').is(':checked'))
+				$('#switchCountyBorder').trigger('click');
+			if ($('#switchBoroughBorder').is(':checked'))
+				$('#switchBoroughBorder').trigger('click');
+			if ($('#switchTownBorder').is(':checked'))
+				$('#switchTownBorder').trigger('click');
+		});
 	}
-	CantonBorderLayer.refresh();
 }
 
 switchTownBorder = () => {
 	if ($('#switchTownBorder').is(':checked')) {
-		TownBorderLayer.style = borderDisplayStyle;
-		if ($('#switchCountyBorder').is(':checked'))
-			$('#switchCountyBorder').trigger('click');
-		if ($('#switchBoroughBorder').is(':checked'))
-			$('#switchBoroughBorder').trigger('click');
-		if ($('#switchCantonBorder').is(':checked'))
-			$('#switchCantonBorder').trigger('click');
-	} else {
-		TownBorderLayer.style = borderInvisibleStyle;
+		delimitTownBorder().then(res => {
+			if ($('#switchCountyBorder').is(':checked'))
+				$('#switchCountyBorder').trigger('click');
+			if ($('#switchBoroughBorder').is(':checked'))
+				$('#switchBoroughBorder').trigger('click');
+			if ($('#switchCantonBorder').is(':checked'))
+				$('#switchCantonBorder').trigger('click');
+		});
 	}
-	TownBorderLayer.refresh();
 }
 
 redraw = () => {

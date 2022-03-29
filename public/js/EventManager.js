@@ -21,10 +21,6 @@ try {
 let wheelOpt = supportsPassive ? { passive: false } : false;
 let wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
 
-eventCatcher = () => {
-    blockPageScrollOnMapZoom();
-}
-
 blockPageScrollOnMapZoom = () => {
     let pos = document.querySelectorAll( ":hover" );
     pos.forEach(element => {

@@ -1,30 +1,27 @@
-let map = new OpenLayers.Map({
-	div: "map",
-	layers: [
-		new OpenLayers.Layer.OSM("OSM (without buffer)"),
-		new OpenLayers.Layer.OSM("OSM (with buffer)", null, {buffer: 2})
-	],
-	center: new OpenLayers.LonLat(7.2441099, 47.5815041).transform('EPSG:4326', 'EPSG:3857'),
-	zoom: 9
-});
+let map, infoWindow;
+
+function initMap() {
+	map = new google.maps.Map(document.getElementById("map"), {
+		center: { lat: 47.5815041, lng: 7.2441099 },
+		zoom: 9,
+	});
+	infoWindow = new google.maps.InfoWindow();
+}
 
 /*
 	Usage: drawGeojson(Path, {strokeWidth: Width,	strokeColor: Color, fillColor: Color, fillOpacity: Opacity});
  */
 
-drawGeojson = (path, style) => {
-	const vector = new OpenLayers.Layer.Vector("GeoJSON", {
-		projection: "EPSG:4326",
-		strategies: [new OpenLayers.Strategy.Fixed()],
-		protocol: new OpenLayers.Protocol.HTTP({
-			url: path,
-			format: new OpenLayers.Format.GeoJSON()
-		})
-	});
-	vector.style = style;
-	map.addLayer(vector);
-	return vector;
+drawGeojson = (path) => {
+	map.data.loadGeoJson(path)
+	map.data.setStyle({strokeColor: '#34495e', fillColor: '#34495e', fillOpacity: 0.0});
 };
+
+clearGeoJson = () => {
+	map.data.forEach(function(feature) {
+		map.data.remove(feature);
+	});
+}
 
 /*
 	Usage: drawMarker({x: x, y: y}, Path, {name: Name, lon: Lon, lat: Lat, id: Id, title: Title});
