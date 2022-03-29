@@ -1,7 +1,7 @@
-let CSPLayer = null;
-let CISLayer = null;
-let CPILayer = null;
-let stationsMarker = {};
+let CSPArray = [];
+let CISArray = [];
+let CPIArray = [];
+let stationsArray = {"csp": [], "cis": [], "cpi": []};
 
 pinStations = () => {
 	return new Promise((resolve, reject) => {
@@ -18,14 +18,11 @@ drawCSP = (csp) => {
 		const marker = drawMarker(
 			{x: 16, y: 16},
 			"/assets/csp.png",
-			{name: station.city, lon: station.coordinates.coordinates[0], lat: station.coordinates.coordinates[1], id: station.id, title: station.city},
-			CSPLayer
+			{name: station.city, lon: station.coordinates.coordinates[0], lat: station.coordinates.coordinates[1], id: station.id},
+			CSPArray
 		);
-		if (CSPLayer === null) {
-			CSPLayer = marker.layer;
-			stationsMarker[station.id] = marker.marker;
-		} else
-			stationsMarker[station.id] = marker;
+		CSPArray.push(marker);
+		stationsArray["csp"].push(marker);
 	});
 }
 
@@ -34,14 +31,11 @@ drawCIS = (cis) => {
 		const marker = drawMarker(
 			{x: 16, y: 16},
 			"/assets/cis.png",
-			{name: station.city, lon: station.coordinates.coordinates[0], lat: station.coordinates.coordinates[1], id: station.id, title: station.city},
-			CISLayer
+			{name: station.city, lon: station.coordinates.coordinates[0], lat: station.coordinates.coordinates[1], id: station.id},
+			CISArray
 		);
-		if (CISLayer === null) {
-			CISLayer = marker.layer;
-			stationsMarker[station.id] = marker.marker;
-		} else
-			stationsMarker[station.id] = marker;
+		CISArray.push(marker);
+		stationsArray["cis"].push(marker);
 	});
 }
 
@@ -50,13 +44,46 @@ drawCPI = (cpi) => {
 		const marker = drawMarker(
 			{x: 16, y: 16},
 			"/assets/cpi.png",
-			{name: station.city, lon: station.coordinates.coordinates[0], lat: station.coordinates.coordinates[1], id: station.id, title: station.city},
-			CPILayer
+			{name: station.city, lon: station.coordinates.coordinates[0], lat: station.coordinates.coordinates[1], id: station.id},
+			CPIArray
 		);
-		if (CPILayer === null) {
-			CPILayer = marker.layer;
-			stationsMarker[station.id] = marker.marker;
-		} else
-			stationsMarker[station.id] = marker;
+		CPIArray.push(marker);
+		stationsArray["cpi"].push(marker);
+	});
+}
+
+showCSP = () => {
+	stationsArray["csp"].forEach(csp => {
+		csp.setMap(map);
+	});
+}
+
+showCIS = () => {
+	stationsArray["cis"].forEach(cis => {
+		cis.setMap(map);
+	});
+}
+
+showCPI = () => {
+	stationsArray["cpi"].forEach(cpi => {
+		cpi.setMap(map);
+	});
+}
+
+hideCSP = () => {
+	stationsArray["csp"].forEach(csp => {
+		csp.setMap(null);
+	});
+}
+
+hideCIS = () => {
+	stationsArray["cis"].forEach(cis => {
+		cis.setMap(null);
+	});
+}
+
+hideCPI = () => {
+	stationsArray["cpi"].forEach(cpi => {
+		cpi.setMap(null);
 	});
 }

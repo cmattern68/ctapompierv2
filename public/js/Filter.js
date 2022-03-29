@@ -1,24 +1,24 @@
 switchCSP = () => {
 	if ($('#switchCSP').is(':checked')) {
-		CSPLayer.setOpacity(1.0);
+		showCSP()
 	} else {
-		CSPLayer.setOpacity(0.0);
+		hideCSP()
 	}
 }
 
 switchCIS = () => {
 	if ($('#switchCIS').is(':checked')) {
-		CISLayer.setOpacity(1.0);
+		showCIS()
 	} else {
-		CISLayer.setOpacity(0.0);
+		hideCIS()
 	}
 }
 
 switchCPI = () => {
 	if ($('#switchCPI').is(':checked')) {
-		CPILayer.setOpacity(1.0);
+		showCPI()
 	} else {
-		CPILayer.setOpacity(0.0);
+		hideCPI()
 	}
 }
 

@@ -24,27 +24,19 @@ clearGeoJson = () => {
 }
 
 /*
-	Usage: drawMarker({x: x, y: y}, Path, {name: Name, lon: Lon, lat: Lat, id: Id, title: Title});
+	Usage: drawMarker({x: x, y: y}, Path, {name: Name, lon: Lon, lat: Lat, id: Id});
  */
 
 drawMarker = (size, iconPath, Marker, layer) => {
-	const iconSize = new OpenLayers.Size(size.x, size.y);
-	const iconOffset = new OpenLayers.Pixel(-(iconSize.w/2), -iconSize.h);
-	const Icon = new OpenLayers.Icon(iconPath, iconSize, iconOffset);
-	let Layer = null;
-	if (layer === null || layer === undefined)
-		Layer = new OpenLayers.Layer.Markers(Marker.name + "_Layer");
-	else
-		Layer = layer;
-	map.addLayer(Layer);
-	const pinnedMarker = new OpenLayers.Marker(new OpenLayers.LonLat(Marker.lon, Marker.lat).transform('EPSG:4326', 'EPSG:3857'), Icon);
-	pinnedMarker.icon.imageDiv.setAttribute("id", Marker.id);
-	pinnedMarker.icon.imageDiv.setAttribute("title", Marker.title);
-	Layer.addMarker(pinnedMarker);
-	if (layer === null || layer === undefined)
-		return {marker: pinnedMarker, layer: Layer};
-	else
-		return pinnedMarker;
+	const icon = { icon: new google.maps.MarkerImage(iconPath) };
+	const position = { position: new google.maps.LatLng(parseFloat(Marker.lat), parseFloat(Marker.lon)) };
+	const marker = new google.maps.Marker({
+		position: position.position,
+		icon: icon.icon,
+		map: map,
+		title: Marker.name
+	});
+	return marker;
 };
 
 /*
