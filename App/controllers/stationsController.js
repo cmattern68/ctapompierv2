@@ -6,7 +6,6 @@ exports.get = (req, res) =>
     models.stations.findAll().then(stations => {
         let type = {}
         stations.forEach(station => {
-            console.log(station["type"])
             if (!type.hasOwnProperty(station["type"])) {
                 type[station["type"]] = []
             }
