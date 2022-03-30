@@ -23,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
   vehicles_stations.init({
     vehicle_type: DataTypes.UUID,
     vehicle_station: DataTypes.UUID,
-    name: DataTypes.STRING
+    name: DataTypes.STRING,
+    status: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'vehicles_stations',

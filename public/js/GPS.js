@@ -29,18 +29,26 @@ getAddressFromPos = async (pos) => {
 	return address;
 }
 
-getPosInCountyPerimeter = (t = false) => {
-	if (CountyBorderLayer !== null) {
-		let coordinate = CountyBorderLayer.features[0].geometry.getBounds();
-		if (!t) {
-			coordinate = coordinate.transform('EPSG:3857', 'EPSG:4326');
+getPolygonBounds = (polygon) => {
+	let paths = polygon.getPaths();
+	let bounds = new google.maps.LatLngBounds();
+	paths.forEach(function(path) {
+		let ar = path.getArray();
+		for(let i = 0, l = ar.length;i < l; i++) {
+			bounds.extend(ar[i]);
 		}
-		const east = coordinate.right;
-		const west = coordinate.left;
-		const south = coordinate.bottom;
-		const north = coordinate.top;
-		const lat = north + (Math.random() * (south - north));
-		const lon = west + (Math.random() * (east - west));
-		return ({lon: lon, lat: lat});
-	}
+	});
+	return bounds;
+}
+
+getPosInCountyPerimeter = (t = false) => {
+	const geojson = JSON.parse(read('geojson/county/' + County + '.geojson'));
+	const bbox = turf.bbox(turf.lineString(geojson.geometry.coordinates[0]));
+	const west = bbox[0];
+	const south = bbox[1];
+	const east = bbox[2];
+	const north = bbox[3];
+	const lat = north + (Math.random() * (south - north));
+	const lon = west + (Math.random() * (east - west));
+	return ({lon: lon, lat: lat});
 }

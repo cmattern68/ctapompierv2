@@ -44,6 +44,6 @@ drawMarker = (size, iconPath, Marker, layer) => {
  */
 
 zoomOnPos = (pos, level) => {
-	map.setCenter(new OpenLayers.LonLat(pos.lon, pos.lat).transform('EPSG:4326', 'EPSG:3857'), level);
-	redraw();
+	map.setZoom(level);
+	map.setCenter(new google.maps.LatLng(pos.lat, pos.lon))
 }

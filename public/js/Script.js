@@ -8,8 +8,15 @@ init = (county) => {
 		.then(res => {
 			pinStations()
 				.then(res => {
-					MissionCreator().then(res => {
-					}).catch(err => {});
+					loadVehicles()
+						.then(res => {
+							MissionCreator().then(res => {
+							}).catch(err => {
+								console.log(err);
+							});
+						}).catch(err => {
+						console.log(err);
+					})
 			}).catch(err => {
 				console.log(err);
 			})
