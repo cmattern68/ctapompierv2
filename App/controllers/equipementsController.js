@@ -5,7 +5,7 @@ exports.get = (req, res) =>
 {
     models.vehicles_stations.findAll({
         attributes: ['id', 'name', 'status'],
-        order: [['vehicle_station', 'DESC']],
+        order: [['vehicle_station', 'DESC'], ['createdAt', 'ASC']],
         include: [
             {
                 model: models.stations,
@@ -30,6 +30,7 @@ exports.get = (req, res) =>
                                 as: "vehicle_type_jobs",
                                 required: true,
                                 attributes: ['id', 'name', 'staff'],
+                                order: [['createdAt', 'ASC']],
                             }
                         ]
                     }
