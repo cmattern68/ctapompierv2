@@ -9,7 +9,7 @@ EndCall = () => {
 		$('.dialog-popup').remove();
 	}
 	$('#missions-tab').trigger('click');
-	ClearInput();
+	cleanMissionBoard();
 	callInProgress = false;
 }
 

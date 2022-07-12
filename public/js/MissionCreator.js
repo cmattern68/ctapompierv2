@@ -1,6 +1,76 @@
 const categories = JSON.parse(read("/data/Categories.json"));
 let city = null;
 
+getStationsDistances = (coordinates) => {
+	let stationsDistancesFromMission = {};
+	let sortable = [];
+
+	stationsArray.forEach(station => {
+		let stationCoordinate = {lon: station.coordinates.coordinates[0], lat: station.coordinates.coordinates[1]};
+		let stationId = station.id;
+		let distance = getDistance(stationCoordinate, coordinates)
+		stationsDistancesFromMission[stationId] = parseFloat(distance);
+	})
+	for (let vehicle in stationsDistancesFromMission) {
+		sortable.push([vehicle, stationsDistancesFromMission[vehicle]]);
+	}
+	sortable.sort(function(a, b) {
+		return a[1] - b[1];
+	});
+	return sortable;
+}
+
+updateVehicleDistances = (distancesArray) => {
+	vehiclesArray.forEach(vehicle => {
+		const distance_prefix = "." + vehicle.id + "-distance";
+		let distance = "";
+
+		if ($(distance_prefix)[0]) {
+			distancesArray.forEach(station => {
+				if (station[0] === vehicle.stations.id) {
+					distance = station[1] + " km";
+					$(distance_prefix).text(distance);
+					return;
+				}
+			})
+		}
+	});
+}
+
+updateStationsOrder = (stationsCoordinates) => {
+	let stationElement = [];
+	stationsCoordinates.forEach(stationDistance => {
+		stationsArray.forEach(station => {
+			if (station.id === stationDistance[0]) {
+				const station_prefix = "." + station.id + "-station-vehicles"
+				if ($(station_prefix)[0]) {
+					stationElement.push($(station_prefix))
+				}
+			}
+		});
+	});
+	$("#vehicles-tables > tbody").each((index, body) => {
+		$(body).remove()
+	})
+	stationElement.forEach(station => {
+		$("#vehicles-tables").append(station)
+	})
+}
+
+updateDistances = (coordinates) => {
+	let stationsCoordinates = getStationsDistances(coordinates);
+	updateVehicleDistances(stationsCoordinates)
+	updateStationsOrder(stationsCoordinates);
+}
+
+cleanMissionBoard = () => {
+	ClearInput();
+	$("#vehicles-tables > tbody").each((index, body) => {
+		$(body).remove()
+	})
+	fillVehicleTable();
+}
+
 hoverTr = (line) => {
 	let id = ($(line).attr('id')).split("-");
 	if ($('.' + id[0]).length > 0) {
@@ -16,6 +86,8 @@ ClearInput = () => {
 	$('#form-subcategorie').val("defaultSubCatOption").change();
 	$('#form-subcategorie').prop("disabled", true);
 	$('#form-categorie').val("defaultCatOption").change();
+	$("#form-applicant").val("");
+	$("#form-phonenumber").val("");
 	$("#form-city").val("");
 	$("#form-address").val("");
 	$("#form-observations").val("");

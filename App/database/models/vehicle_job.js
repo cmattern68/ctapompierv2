@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   vehicle_job.init({
     name: DataTypes.STRING,
-    staff: DataTypes.INTEGER
+    staff: DataTypes.INTEGER,
+    weight: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'vehicle_job',

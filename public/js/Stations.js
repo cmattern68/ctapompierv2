@@ -1,7 +1,8 @@
 let CSPArray = [];
 let CISArray = [];
 let CPIArray = [];
-let stationsArray = {"csp": [], "cis": [], "cpi": []};
+let stationsArray = [];
+let stationsMarkerArray = {"csp": [], "cis": [], "cpi": []};
 
 pinStations = () => {
 	return new Promise((resolve, reject) => {
@@ -22,7 +23,8 @@ drawCSP = (csp) => {
 			CSPArray
 		);
 		CSPArray.push(marker);
-		stationsArray["csp"].push(marker);
+		stationsMarkerArray["csp"].push(marker);
+		stationsArray.push(station);
 	});
 }
 
@@ -35,7 +37,8 @@ drawCIS = (cis) => {
 			CISArray
 		);
 		CISArray.push(marker);
-		stationsArray["cis"].push(marker);
+		stationsMarkerArray["cis"].push(marker);
+		stationsArray.push(station);
 	});
 }
 
@@ -48,42 +51,43 @@ drawCPI = (cpi) => {
 			CPIArray
 		);
 		CPIArray.push(marker);
-		stationsArray["cpi"].push(marker);
+		stationsMarkerArray["cpi"].push(marker);
+		stationsArray.push(station);
 	});
 }
 
 showCSP = () => {
-	stationsArray["csp"].forEach(csp => {
+	stationsMarkerArray["csp"].forEach(csp => {
 		csp.setMap(map);
 	});
 }
 
 showCIS = () => {
-	stationsArray["cis"].forEach(cis => {
+	stationsMarkerArray["cis"].forEach(cis => {
 		cis.setMap(map);
 	});
 }
 
 showCPI = () => {
-	stationsArray["cpi"].forEach(cpi => {
+	stationsMarkerArray["cpi"].forEach(cpi => {
 		cpi.setMap(map);
 	});
 }
 
 hideCSP = () => {
-	stationsArray["csp"].forEach(csp => {
+	stationsMarkerArray["csp"].forEach(csp => {
 		csp.setMap(null);
 	});
 }
 
 hideCIS = () => {
-	stationsArray["cis"].forEach(cis => {
+	stationsMarkerArray["cis"].forEach(cis => {
 		cis.setMap(null);
 	});
 }
 
 hideCPI = () => {
-	stationsArray["cpi"].forEach(cpi => {
+	stationsMarkerArray["cpi"].forEach(cpi => {
 		cpi.setMap(null);
 	});
 }

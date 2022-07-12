@@ -1,5 +1,23 @@
 const ApiKey = "df272389183b47389919435bd2244190";
 
+getDistance = (posA, posB) => {
+	let R = 6371;
+	let dLat = deg2rad(posB.lat - posA.lat);
+	let dLon = deg2rad(posB.lon - posA.lon);
+	let a =
+		Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+		Math.cos(deg2rad(posA.lat)) * Math.cos(deg2rad(posB.lat)) *
+		Math.sin(dLon / 2) * Math.sin(dLon / 2)
+	;
+	let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+	let d = R * c;
+	return Math.round(d * 10) / 10;
+}
+
+function deg2rad(deg) {
+	return deg * (Math.PI/180)
+}
+
 getAddressFromApi = (pos) => {
 	return new Promise((resolve, reject) => {
 		$.get("https://api-adresse.data.gouv.fr/search/?q=" + County + "&lat=" + pos.lat + "&lon=" + pos.lon, function(address, status) {

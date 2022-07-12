@@ -5,7 +5,7 @@ exports.get = (req, res) =>
 {
     models.vehicles_stations.findAll({
         attributes: ['id', 'name', 'status'],
-        order: [['vehicle_station', 'DESC'], ['createdAt', 'ASC']],
+        order: [['vehicle_station', 'DESC'], ['name', 'ASC']],
         include: [
             {
                 model: models.stations,
@@ -29,8 +29,7 @@ exports.get = (req, res) =>
                                 model: models.vehicle_job,
                                 as: "vehicle_type_jobs",
                                 required: true,
-                                attributes: ['id', 'name', 'staff'],
-                                order: [['createdAt', 'ASC']],
+                                attributes: ['id', 'name', 'staff', 'weight']
                             }
                         ]
                     }
@@ -50,10 +49,10 @@ exports.get = (req, res) =>
                     name: vehicle.stations.city,
                     coordinates: vehicle.stations.coordinates
                 },
-                vehicle_job: []
+                vehicle_job: {}
             };
             vehicle.vehicle_types.vehicle_type_jobs.forEach(job => {
-                vehicleFormatted.vehicle_job.push(job.vehicle_type_jobs);
+                vehicleFormatted.vehicle_job[job.vehicle_type_jobs.weight] = job.vehicle_type_jobs;
             });
             vehiclesArray.push(vehicleFormatted);
         });

@@ -11,6 +11,7 @@ let LoadInProgress = false;
 LocateMission = (pos) => {
 	drawMarker({x: 16, y: 16}, "/assets/mission.png", {name: "Feu de Maison", lon: pos.lon, lat: pos.lat, id: "Mission_1", title: "Feu de Maison"});
 	zoomOnPos({lon: pos.lon, lat: pos.lat}, 14);
+	updateDistances({lon: pos.lon, lat: pos.lat});
 }
 
 endConversation = () => {

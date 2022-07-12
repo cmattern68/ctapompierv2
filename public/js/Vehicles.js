@@ -31,14 +31,23 @@ loadVehicles = () => {
     return new Promise((resolve, reject) => {
         vehiclesArray = httpGet("http://localhost/equipements?county=" + County);
         fillVehicleTable();
-        console.log(StatusEnum)
         resolve("loadVehicles");
     });
 }
 
 fillVehicleTable = () => {
     let layout = read("/Layout/VehicleLayout.html");
+    let currentId = "";
+    const endBody = "</tbody>";
     vehiclesArray.forEach(vehicle => {
+        const classId = vehicle.stations.id + "-station-vehicles";
+        if (vehicle.stations.id !== currentId) {
+            const startBody = "<tbody class='" + classId + "'>";
+            if (currentId !== "")
+                $('#vehicles-tables').append(endBody)
+            $('#vehicles-tables').append(startBody)
+            currentId = vehicle.stations.id;
+        }
         let copyLayout = layout;
         copyLayout = tagToText("{{id}}", copyLayout, vehicle.id)
         copyLayout = tagToText("{{id}}", copyLayout, vehicle.id)
@@ -48,15 +57,16 @@ fillVehicleTable = () => {
         copyLayout = tagToText("{{vehicle}}", copyLayout, vehicle.name)
         let jobI = 0
         let select = ""
-        vehicle.vehicle_job.forEach(job => {
+        for (const [key, job] of Object.entries(vehicle.vehicle_job)) {
             if (jobI === 0)
                 select = "<option value='" + job.id + "' selected>" + job.name + "</option>\n"
             else
                 select += "<option value='" + job.id + "'>" + job.name + "</option>\n"
             ++jobI;
-        });
+        }
         copyLayout = tagToText("{{options}}", copyLayout, select)
         copyLayout = tagToText("{{distance}}", copyLayout, "N/A")
-        $('.vehicle_body').append(copyLayout);
+        $('.' + classId).append(copyLayout);
     });
+    $('#vehicles-tables').append(endBody)
 }
