@@ -1,117 +1,116 @@
 <div class="tab-pane fade" id="mission" role="tabpanel" aria-labelledby="contact-tab">
-
-    <div class="row g-3">
-        <div class="form-floating col">
-            <input type="text" id="form-applicant" class="form-control" placeholder="Nom / Prénom du requérant" aria-label="applicant" name="applicant">
-            <label for="form-applicant" class="form-label">Nom / Prénom du Requérant :</label>
+        <div class="row g-3">
+            <div class="form-floating col">
+                <input type="text" id="form-applicant" class="form-control" placeholder="Nom / Prénom du requérant" aria-label="applicant" name="applicant">
+                <label for="form-applicant" class="form-label">Nom / Prénom du Requérant :</label>
+            </div>
+            <div class="form-floating col">
+                <input type="text" id="form-phonenumber" class="form-control" placeholder="Numéro de téléphone du requérant" aria-label="phonenumber" name="phonenumber">
+                <label for="form-phonenumber" class="form-label">Numéro de Téléphone du Requérant :</label>
+            </div>
         </div>
-        <div class="form-floating col">
-            <input type="text" id="form-phonenumber" class="form-control" placeholder="Numéro de téléphone du requérant" aria-label="phonenumber" name="phonenumber">
-            <label for="form-phonenumber" class="form-label">Numéro de Téléphone du Requérant :</label>
+
+        <hr>
+
+        <div class="row g-3 mission-lane">
+            <div class="form-floating col-sm">
+                <input type="text" id="form-city" class="form-control" placeholder="Commune de l'intervention" aria-label="city" name="city">
+                <label for="form-city" class="form-label">Commune de l'intervention :</label>
+            </div>
+            <div class="form-floating col-sm-7">
+                <input type="text" id="form-address" class="form-control" placeholder="Adresse de l'intervention" aria-label="address" name="address">
+                <label for="form-address" class="form-label">Adresse de l'intervention :</label>
+            </div>
         </div>
-    </div>
 
-    <hr>
-
-    <div class="row g-3 mission-lane">
-        <div class="form-floating col-sm">
-            <input type="text" id="form-city" class="form-control" placeholder="Commune de l'intervention" aria-label="city" name="city">
-            <label for="form-city" class="form-label">Commune de l'intervention :</label>
+        <div class="row g-3 mission-lane">
+            <div class="form-floating col">
+                <select class="form-select" aria-label="Catégorie d'intervention" id="form-categorie" name="categorie">
+                    <option disabled selected value="defaultCatOption" id="defaultCatOption"> -- Choisissez une Catégorie -- </option>
+                </select>
+                <label for="form-categorie" class="form-label">Catégorie d'intervention :</label>
+            </div>
+            <div class="form-floating col">
+                <select class="form-select" aria-label="Sous-Catégorie d'intervention" id="form-subcategorie" name="subcategorie" disabled>
+                    <option disabled selected value="defaultSubCatOption" id="defaultSubCatOption"> -- Choisissez une Sous-Catégorie -- </option>
+                </select>
+                <label for="form-subcategorie" class="form-label">Sous-Catégorie d'intervention :</label>
+            </div>
         </div>
-        <div class="form-floating col-sm-7">
-            <input type="text" id="form-address" class="form-control" placeholder="Adresse de l'intervention" aria-label="address" name="address">
-            <label for="form-address" class="form-label">Adresse de l'intervention :</label>
+
+        <div class="row g-3">
+            <div class="form-floating col">
+                <textarea class="form-control" placeholder="Observations :" id="form-observations" name="observations" style="height: 100px"></textarea>
+                <label for="form-observations">Observations :</label>
+            </div>
         </div>
-    </div>
 
-    <div class="row g-3 mission-lane">
-        <div class="form-floating col">
-            <select class="form-select" aria-label="Catégorie d'intervention" id="form-categorie" name="categorie">
-                <option disabled selected value="defaultCatOption" id="defaultCatOption"> -- Choisissez une Catégorie -- </option>
-            </select>
-            <label for="form-categorie" class="form-label">Catégorie d'intervention :</label>
+        <hr>
+
+        <div class="col-12">
+            <label for="services" class="form-label">Services à Contacter :</label><br>
+            <div class="btn-group" role="group" aria-label="Services à contacter" id="services">
+                <input type="checkbox" class="btn-check" id="sv-samu" autocomplete="off">
+                <label class="btn btn-outline-success" for="sv-samu">Samu</label>
+
+                <input type="checkbox" class="btn-check" id="sv-police" autocomplete="off">
+                <label class="btn btn-outline-primary" for="sv-police">Police</label>
+
+                <input type="checkbox" class="btn-check" id="sv-gendarmerie" autocomplete="off">
+                <label class="btn btn-outline-primary" for="sv-gendarmerie">Gendarmerie</label>
+
+                <input type="checkbox" class="btn-check" id="sv-electricite" autocomplete="off">
+                <label class="btn btn-outline-info" for="sv-electricite">ERDF / Enedis</label>
+
+                <input type="checkbox" class="btn-check" id="sv-gaz" autocomplete="off">
+                <label class="btn btn-outline-info" for="sv-gaz">GDF</label>
+
+                <input type="checkbox" class="btn-check" id="sv-dir" autocomplete="off">
+                <label class="btn btn-outline-warning" for="sv-dir">DIR</label>
+
+                <input type="checkbox" class="btn-check" id="sv-coz" autocomplete="off">
+                <label class="btn btn-outline-danger" for="sv-coz">COZ</label>
+
+                <input type="checkbox" class="btn-check" id="sv-cogic" autocomplete="off">
+                <label class="btn btn-outline-warning" for="sv-cogic">COGIC</label>
+
+                <input type="checkbox" class="btn-check" id="sv-dgscgc" autocomplete="off">
+                <label class="btn btn-outline-warning" for="sv-dgscgc">DGSCGC</label>
+
+                <input type="checkbox" class="btn-check" id="sv-mairie" autocomplete="off">
+                <label class="btn btn-outline-success" for="sv-mairie">Mairie</label>
+
+                <input type="checkbox" class="btn-check" id="sv-prefecture" autocomplete="off">
+                <label class="btn btn-outline-success" for="sv-prefecture">Préfécture</label>
+
+            </div>
         </div>
-        <div class="form-floating col">
-            <select class="form-select" aria-label="Sous-Catégorie d'intervention" id="form-subcategorie" name="subcategorie" disabled>
-                <option disabled selected value="defaultSubCatOption" id="defaultSubCatOption"> -- Choisissez une Sous-Catégorie -- </option>
-            </select>
-            <label for="form-subcategorie" class="form-label">Sous-Catégorie d'intervention :</label>
+
+        <hr>
+
+        <div class="col-12 table-wrapper-scroll-y table-vehicle-scrollbar">
+            <table class="table table-hover" id="vehicles-tables">
+                <thead class="vehicle_head">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Caserne</th>
+                    <th scope="col">Véhicule</th>
+                    <th scope="col">Emploi Opérationnel</th>
+                    <th scope="col">Distance</th>
+                </tr>
+                </thead>
+            </table>
         </div>
-    </div>
 
-    <div class="row g-3">
-        <div class="form-floating col">
-            <textarea class="form-control" placeholder="Observations :" id="form-observations" name="observations" style="height: 100px"></textarea>
-            <label for="form-observations">Observations :</label>
+        <div class="row g-3 create-alert">
+            <div class="col-md-4">
+                <button class="btn btn-success" type="submit">Déclancher les Secours</button>
+                <button class="btn btn-danger" id="cancel-engagement" type="submit">Annuler l'engagement</button>
+            </div>
+            <div class="col-md-4 offset-md-4">
+                <button class="btn btn-primary" id="tr-gendarmerie" type="submit">Transfert Gendarmerie</button>
+                <button class="btn btn-primary" id="tr-police" type="submit">Transfert Police</button>
+                <button class="btn btn-success" id="tr-samu" type="submit">Transfert SAMU</button>
+            </div>
         </div>
-    </div>
-
-    <hr>
-
-    <div class="col-12">
-        <label for="services" class="form-label">Services à Contacter :</label><br>
-        <div class="btn-group" role="group" aria-label="Services à contacter" id="services">
-            <input type="checkbox" class="btn-check" id="sv-samu" autocomplete="off">
-            <label class="btn btn-outline-success" for="sv-samu">Samu</label>
-
-            <input type="checkbox" class="btn-check" id="sv-police" autocomplete="off">
-            <label class="btn btn-outline-primary" for="sv-police">Police</label>
-
-            <input type="checkbox" class="btn-check" id="sv-gendarmerie" autocomplete="off">
-            <label class="btn btn-outline-primary" for="sv-gendarmerie">Gendarmerie</label>
-
-            <input type="checkbox" class="btn-check" id="sv-electricite" autocomplete="off">
-            <label class="btn btn-outline-info" for="sv-electricite">ERDF / Enedis</label>
-
-            <input type="checkbox" class="btn-check" id="sv-gaz" autocomplete="off">
-            <label class="btn btn-outline-info" for="sv-gaz">GDF</label>
-
-            <input type="checkbox" class="btn-check" id="sv-dir" autocomplete="off">
-            <label class="btn btn-outline-warning" for="sv-dir">DIR</label>
-
-            <input type="checkbox" class="btn-check" id="sv-coz" autocomplete="off">
-            <label class="btn btn-outline-danger" for="sv-coz">COZ</label>
-
-            <input type="checkbox" class="btn-check" id="sv-cogic" autocomplete="off">
-            <label class="btn btn-outline-warning" for="sv-cogic">COGIC</label>
-
-            <input type="checkbox" class="btn-check" id="sv-dgscgc" autocomplete="off">
-            <label class="btn btn-outline-warning" for="sv-dgscgc">DGSCGC</label>
-
-            <input type="checkbox" class="btn-check" id="sv-mairie" autocomplete="off">
-            <label class="btn btn-outline-success" for="sv-mairie">Mairie</label>
-
-            <input type="checkbox" class="btn-check" id="sv-prefecture" autocomplete="off">
-            <label class="btn btn-outline-success" for="sv-prefecture">Préfécture</label>
-
-        </div>
-    </div>
-
-    <hr>
-
-    <div class="col-12 table-wrapper-scroll-y table-vehicle-scrollbar">
-        <table class="table table-hover" id="vehicles-tables">
-            <thead class="vehicle_head">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Caserne</th>
-                <th scope="col">Véhicule</th>
-                <th scope="col">Emploi Opérationnel</th>
-                <th scope="col">Distance</th>
-            </tr>
-            </thead>
-        </table>
-    </div>
-
-    <div class="row g-3 create-alert">
-        <div class="col-md-4">
-            <button class="btn btn-success" type="submit">Déclancher les Secours</button>
-            <button class="btn btn-danger" id="cancel-engagement" type="submit">Annuler l'engagement</button>
-        </div>
-        <div class="col-md-4 offset-md-4">
-            <button class="btn btn-primary" id="tr-gendarmerie" type="submit">Transfert Gendarmerie</button>
-            <button class="btn btn-primary" id="tr-police" type="submit">Transfert Police</button>
-            <button class="btn btn-success" id="tr-samu" type="submit">Transfert SAMU</button>
-        </div>
-    </div>
 </div>

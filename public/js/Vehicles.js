@@ -1,42 +1,90 @@
 let vehiclesArray = []
+let vehiclesStation = {}
 const StatusEnum = Object.freeze({
     // Status Reflexes
-    1: {label: "Parti", bgColor: "", txtColor: "", borderColor: ""},
-    2: {label: "Sur les Lieux", bgColor: "", txtColor: "", borderColor: ""},
-    3: {label: "Message", bgColor: "", txtColor: "", borderColor: ""},
-    4: {label: "Message Urgent", bgColor: "", txtColor: "", borderColor: ""},
-    5: {label: "Transport Hôpital", bgColor: "", txtColor: "", borderColor: ""},
-    6: {label: "Arrivée Hôpital", bgColor: "", txtColor: "", borderColor: ""},
-    7: {label: "Disponible Radio", bgColor: "", txtColor: "", borderColor: ""},
-    8: {label: "Indisponible", bgColor: "", txtColor: "", borderColor: ""},
-    9: {label: "Disponible", bgColor: "", txtColor: "", borderColor: ""},
+    0: {label: "Séléctionné"},
+    1: {label: "Parti"},
+    2: {label: "Sur les Lieux"},
+    3: {label: "Message"},
+    4: {label: "Message Urgent"},
+    5: {label: "Transport Hôpital"},
+    6: {label: "Arrivée Hôpital"},
+    7: {label: "Disponible Radio"},
+    8: {label: "Indisponible"},
+    9: {label: "Disponible"},
     // Groupe Sanitaires
-    22: {label: "SMUR sur les Lieux", bgColor: "", txtColor: "", borderColor: ""},
+    22: {label: "SMUR sur les Lieux"},
     // Groupe Service Publics
-    30: {label: "Police sur les Lieux", bgColor: "", txtColor: "", borderColor: ""},
-    31: {label: "Gendarmerie sur les Lieux", bgColor: "", txtColor: "", borderColor: ""},
-    32: {label: "ERDF sur les Lieux", bgColor: "", txtColor: "", borderColor: ""},
-    33: {label: "GRDF sur les Lieux", bgColor: "", txtColor: "", borderColor: ""},
-    34: {label: "DIR sur les Lieux", bgColor: "", txtColor: "", borderColor: ""},
-    35: {label: "Conseil Général sur les Lieux", bgColor: "", txtColor: "", borderColor: ""},
-    36: {label: "Police Municipale sur les Lieux", bgColor: "", txtColor: "", borderColor: ""},
-    37: {label: "Brigades Vertes sur les Lieux", bgColor: "", txtColor: "", borderColor: ""},
-    38: {label: "Maire sur les Lieux", bgColor: "", txtColor: "", borderColor: ""},
+    30: {label: "Police sur les Lieux"},
+    31: {label: "Gendarmerie sur les Lieux"},
+    32: {label: "ERDF sur les Lieux"},
+    33: {label: "GRDF sur les Lieux"},
+    34: {label: "DIR sur les Lieux"},
+    35: {label: "Conseil Général sur les Lieux"},
+    36: {label: "Police Municipale sur les Lieux"},
+    37: {label: "Brigades Vertes sur les Lieux"},
+    38: {label: "Maire sur les Lieux"},
     // Groupe Génériques
-    25: {label: "Disponible Hors Secteur", bgColor: "", txtColor: "", borderColor: ""},
-    44: {label: "Disponible sur les Lieux", bgColor: "", txtColor: "", borderColor: ""},
+    25: {label: "Disponible Hors Secteur"},
+    44: {label: "Disponible sur les Lieux"},
+    101: {label: "En Alerte"}
 });
 
 loadVehicles = () => {
     return new Promise((resolve, reject) => {
         vehiclesArray = httpGet("http://localhost/equipements?county=" + County);
-        fillVehicleTable();
+        groupByStation()
+        fillMissionTabVehicleTable();
+        fillVehicleTabVehicleTable();
         resolve("loadVehicles");
     });
 }
 
-fillVehicleTable = () => {
-    let layout = read("/Layout/VehicleLayout.html");
+groupByStation = () => {
+    vehiclesArray.forEach(vehicle => {
+        if (vehiclesStation[vehicle.stations.id] === undefined)
+            vehiclesStation[vehicle.stations.id] = [];
+        vehiclesStation[vehicle.stations.id].push(vehicle);
+    });
+}
+
+updateVehicleStatus = (status, id) => {
+    let classList = $("#vehicle-" + id).attr("class").split(" ");
+    let tgClass = ""
+    classList.forEach(_class => {
+        if (_class.match("btn-status-") != null) {
+            tgClass = _class
+            return
+        }
+    })
+    $("#vehicle-" + id).removeClass(tgClass).addClass("btn-status-" + status).prop('title', StatusEnum[status].label);
+
+}
+
+fillVehicleTabVehicleTable = () => {
+    const layout = read("/Layout/VehiclesTabLayout.html");
+    stationsArray.forEach(station => {
+        let copyLayout = layout;
+        copyLayout = tagToText("{{station_id}}", copyLayout, station.id)
+        copyLayout = tagToText("{{station_name}}", copyLayout, station.city)
+        if (vehiclesStation[station.id] == undefined) {
+            const vehicleList = "<button type=\"button\" class=\"btn btn-status-8 btn-vehicle\" id=\"no-vehicle\" title=\"" + StatusEnum[8].label + "\"'>Aucun véhicule</button>";
+            copyLayout = tagToText("{{vehicle_list}}", copyLayout, vehicleList)
+            copyLayout = tagToText("{{btn-station-status}}", copyLayout, "btn-station-indispo")
+        } else {
+            let vehicleList = ""
+            for (const [key, vehicle] of Object.entries(vehiclesStation[station.id])) {
+                vehicleList += "<button type=\"button\" class=\"btn btn-vehicle btn-status-" + vehicle.status + "\" id=\"vehicle-" + vehicle.id + "\" title=\"" + StatusEnum[vehicle.status].label + "\"'>" + vehicle.name + "</button>\n";
+            }
+            copyLayout = tagToText("{{vehicle_list}}", copyLayout, vehicleList)
+            copyLayout = tagToText("{{btn-station-status}}", copyLayout, "btn-station-dispo")
+        }
+        $("#vehicles").append(copyLayout)
+    });
+}
+
+fillMissionTabVehicleTable = () => {
+    let layout = read("/Layout/VehicleMissionTabLayout.html");
     let currentId = "";
     const endBody = "</tbody>";
     vehiclesArray.forEach(vehicle => {

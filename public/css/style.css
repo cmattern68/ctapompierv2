@@ -230,3 +230,193 @@ textarea[name=observations] {
 .right {
     float: right !important;
 }
+
+/*
+    Vehicles BTN
+ */
+
+.btn-vehicle-station {
+    margin: 10px 10px 10px 3px;
+}
+
+.btn-station-dispo {
+    background-color: #1f356f !important;
+    color: #fffbf0 !important;
+    border-color: #b7babc !important;
+}
+
+.btn-station-indispo {
+    background-color: #c1c1c1 !important;
+    color: #000000 !important;
+    border-color: #8d908e !important;
+}
+
+.btn-vehicle {
+    margin: 3px;
+}
+
+.table-selected {
+    background-color: #f1c40f !important;
+    color: #000000 !important;
+}
+
+/*TODO Séléctionné*/
+.btn-status-0 {
+    background-color: #f1c40f !important;
+    color: #000000 !important;
+    border-color: #8d908e !important;
+}
+
+/*TODO Parti*/
+.btn-status-1 {
+    background-color: #ff0000 !important;
+    color: #000000 !important;
+    border-color: #8d908e !important;
+}
+
+/*Sur les Lieux*/
+.btn-status-2 {
+    background-color: #ff0000 !important;
+    color: #fffbf0 !important;
+    border-color: #8d908e !important;
+}
+
+/*TODO Message*/
+.btn-status-3 {
+    background-color: #7e7273 !important;
+    color: #fffbf0 !important;
+    border-color: #8d908e !important;
+}
+
+/*TODO Message Urgent*/
+.btn-status-4 {
+    background-color: #7e7273 !important;
+    color: #fffbf0 !important;
+    border-color: #8d908e !important;
+}
+
+/*TODO Transport Hôpital*/
+.btn-status-5 {
+    background-color: #7e7273 !important;
+    color: #fffbf0 !important;
+    border-color: #8d908e !important;
+}
+
+/*TODO Arrivée Hôpital*/
+.btn-status-6 {
+    background-color: #7e7273 !important;
+    color: #fffbf0 !important;
+    border-color: #8d908e !important;
+}
+
+/*Disponible Radio*/
+.btn-status-7 {
+    background-color: #00ffff !important;
+    color: #000000 !important;
+    border-color: #8d908e !important;
+}
+
+/*Indisponible*/
+.btn-status-8 {
+    background-color: #7e7273 !important;
+    color: #fffbf0 !important;
+    border-color: #8d908e !important;
+}
+
+/*Disponible*/
+.btn-status-9 {
+    background-color: #00ff00 !important;
+    color: #000000 !important;
+    border-color: #8d908e !important;
+}
+
+/*TODO SMUR sur les Lieux*/
+.btn-status-22 {
+    background-color: #7e7273 !important;
+    color: #fffbf0 !important;
+    border-color: #8d908e !important;
+}
+
+/*TODO Police sur les Lieux*/
+.btn-status-30 {
+    background-color: #7e7273 !important;
+    color: #fffbf0 !important;
+    border-color: #8d908e !important;
+}
+
+/*TODO Gendarmerie sur les Lieux*/
+.btn-status-31 {
+    background-color: #7e7273 !important;
+    color: #fffbf0 !important;
+    border-color: #8d908e !important;
+}
+
+/*TODO ERDF sur les Lieux*/
+.btn-status-32 {
+    background-color: #7e7273 !important;
+    color: #fffbf0 !important;
+    border-color: #8d908e !important;
+}
+
+/*TODO GRDF sur les Lieux*/
+.btn-status-33 {
+    background-color: #7e7273 !important;
+    color: #fffbf0 !important;
+    border-color: #8d908e !important;
+}
+
+/*TODO DIR sur les Lieux*/
+.btn-status-34 {
+    background-color: #7e7273 !important;
+    color: #fffbf0 !important;
+    border-color: #8d908e !important;
+}
+
+/*TODO Conseil Général sur les Lieux*/
+.btn-status-35 {
+    background-color: #7e7273 !important;
+    color: #fffbf0 !important;
+    border-color: #8d908e !important;
+}
+
+/*TODO Police Municipale sur les Lieux*/
+.btn-status-36 {
+    background-color: #7e7273 !important;
+    color: #fffbf0 !important;
+    border-color: #8d908e !important;
+}
+
+/*TODO Brigades Vertes sur les Lieux*/
+.btn-status-37 {
+    background-color: #7e7273 !important;
+    color: #fffbf0 !important;
+    border-color: #8d908e !important;
+}
+
+/*TODO Maire sur les Lieux*/
+.btn-status-38 {
+    background-color: #7e7273 !important;
+    color: #fffbf0 !important;
+    border-color: #8d908e !important;
+}
+
+/*TODO Disponible Hors Secteur*/
+.btn-status-25 {
+    background-color: #7e7273 !important;
+    color: #fffbf0 !important;
+    border-color: #8d908e !important;
+}
+
+/*TODO Disponible sur les Lieux*/
+.btn-status-44 {
+    background-color: #7e7273 !important;
+    color: #fffbf0 !important;
+    border-color: #8d908e !important;
+}
+
+/*En alerte*/
+.btn-status-101 {
+    background-color: #74148d !important;
+    color: #fffbf0 !important;
+    border-color: #8d908e !important;
+}

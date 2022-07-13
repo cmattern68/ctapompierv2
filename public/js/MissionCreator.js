@@ -68,16 +68,18 @@ cleanMissionBoard = () => {
 	$("#vehicles-tables > tbody").each((index, body) => {
 		$(body).remove()
 	})
-	fillVehicleTable();
+	fillMissionTabVehicleTable();
 }
 
 hoverTr = (line) => {
-	let id = ($(line).attr('id')).split("-");
+	let id = ($(line).attr('id')).split("_");
 	if ($('.' + id[0]).length > 0) {
 		if (line.checked) {
-			$('.' + id[0]).addClass("table-success");
+			$('.' + id[0]).addClass("table-selected");
+			updateVehicleStatus(0, id)
 		} else {
-			$('.' + id[0]).removeClass("table-success");
+			$('.' + id[0]).removeClass("table-selected");
+			updateVehicleStatus(9, id)
 		}
 	}
 }
@@ -91,6 +93,15 @@ ClearInput = () => {
 	$("#form-city").val("");
 	$("#form-address").val("");
 	$("#form-observations").val("");
+	const checkbox = $(".emploi_check:checkbox:checked")
+	for (const [key, vehicleLine] of Object.entries(checkbox)) {
+		if (typeof(vehicleLine) === "object" && vehicleLine.name === "emploi_check") {
+			const vehicle_id = $(vehicleLine).attr( "id")
+			$("#" + vehicle_id).prop("checked", false)
+			const t = $("#" + vehicle_id)
+			hoverTr(vehicleLine)
+		}
+	}
 }
 
 SetSubSelect = (value) => {
@@ -129,8 +140,9 @@ $(document).ready(function() {
 		let value = $(this).find("option:selected").attr("value");
 		SetSubSelect(value);
 	});
-	$(".emploi_check").change(function() {
-		hoverTr(this);
-	});
+});
+
+$(document).on("change", "input[name=emploi_check]", function() {
+	hoverTr(this);
 });
 
