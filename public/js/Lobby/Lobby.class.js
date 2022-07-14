@@ -7,8 +7,9 @@ let GeoBorder = {};
 let Stations = {};
 let callInProgress = false;
 let call = null;
-let callAnswered = 0;
-let Missions = {}
+let Stats = {}
+let MissionBoardPanel = {}
+let Jobs = {}
 
 /*
  * END GLOBAL VARIABLES FOR ALL PROJECT
@@ -17,17 +18,24 @@ let Missions = {}
 class Lobby {
     constructor(county) {
         County = county;
-        GeoBorder = new Border(County)
+        GeoBorder = new Border(County);
         initStations(County)
             .then((stations) => {
                 Stations = stations;
-            }).catch(() => {
-        })
+                LoadAllVehicles().then((vehicles) => {
+                    LoadAllJobs().then((jobs) => {
+                        Jobs = jobs;
+                        CreateMissionBoard();
+                        setStatBoard();
+                        SetVehiculeTabStatus();
+                    }).catch(() => {});
+                }).catch(() => {});
+            }).catch(() => {});
     }
 
     run = async () => {
         while (true) {
-            await new Promise(r => setTimeout(r, 1000));
+            await sleep(1000);
             ManageCall()
         }
     }

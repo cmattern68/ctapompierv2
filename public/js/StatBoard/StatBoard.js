@@ -1,0 +1,3 @@
+setStatBoard = () => {
+    Stats = new StatBoard();
+}

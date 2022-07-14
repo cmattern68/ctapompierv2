@@ -34,8 +34,7 @@ class Call {
 
     answer = () => {
         if ($('.call-popup').length > 0) {
-            callAnswered++;
-            $('.call-count').text(" " + callAnswered);
+            Stats.setAnswered(1);
             $('.call-popup').remove();
             $('#mission-tab').trigger('click');
             /*if (audio !== null) {

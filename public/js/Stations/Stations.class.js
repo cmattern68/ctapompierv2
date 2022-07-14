@@ -6,6 +6,7 @@ class Station {
         this.coordinates = station.coordinates
         this.sdis_id = station.sdis_id
         this.marker = null;
+        this.vehicles = {};
         this.draw()
     }
 

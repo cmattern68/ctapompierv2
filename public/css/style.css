@@ -272,7 +272,7 @@ textarea[name=observations] {
     border-color: #8d908e !important;
 }
 
-/*TODO Parti*/
+/*Parti*/
 .btn-status-1 {
     background-color: #ff0000 !important;
     color: #000000 !important;
@@ -300,16 +300,16 @@ textarea[name=observations] {
     border-color: #8d908e !important;
 }
 
-/*TODO Transport Hôpital*/
+/*Transport Hôpital*/
 .btn-status-5 {
-    background-color: #7e7273 !important;
-    color: #fffbf0 !important;
+    background-color: #8080ff !important;
+    color: #000000 !important;
     border-color: #8d908e !important;
 }
 
-/*TODO Arrivée Hôpital*/
+/*Arrivée Hôpital*/
 .btn-status-6 {
-    background-color: #7e7273 !important;
+    background-color: #0000ff !important;
     color: #fffbf0 !important;
     border-color: #8d908e !important;
 }
@@ -405,9 +405,9 @@ textarea[name=observations] {
     border-color: #8d908e !important;
 }
 
-/*TODO Disponible Hors Secteur*/
+/*Disponible Hors Secteur*/
 .btn-status-25 {
-    background-color: #7e7273 !important;
+    background-color: #c66300 !important;
     color: #fffbf0 !important;
     border-color: #8d908e !important;
 }

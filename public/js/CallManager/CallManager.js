@@ -12,9 +12,6 @@ ManageCall = () => {
 }
 
 $(document).ready(function() {
-    $("#cancel-engagement").click(function() {
-        call.cancel();
-    });
     $(document).on("click",".dialog-popup", function () {
         $('.dialog-popup').css('z-index', '30000');
         $('.content-container').css('z-index', '20000');
