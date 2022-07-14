@@ -10,6 +10,7 @@ let call = null;
 let Stats = {}
 let MissionBoardPanel = {}
 let Jobs = {}
+let Vehicles = {}
 
 /*
  * END GLOBAL VARIABLES FOR ALL PROJECT
@@ -23,6 +24,7 @@ class Lobby {
             .then((stations) => {
                 Stations = stations;
                 LoadAllVehicles().then((vehicles) => {
+                    Vehicles = vehicles;
                     LoadAllJobs().then((jobs) => {
                         Jobs = jobs;
                         CreateMissionBoard();

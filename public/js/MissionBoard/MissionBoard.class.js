@@ -91,7 +91,8 @@ class MissionBoard {
     }
 
     preparedUpdatedSelectedVehicle = (vehicleId) => {
-        let isChecked = $("#" + vehicleId + "_check").is(":checked");
+        let stationId = Vehicles[vehicleId].station_id;
+        let isChecked = $("#" + stationId + "_" + vehicleId + "_check").is(":checked");
         if (isChecked) {
             this.updatedSelectedVehicle(vehicleId, 1)
         }
