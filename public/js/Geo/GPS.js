@@ -18,42 +18,6 @@ function deg2rad(deg) {
 	return deg * (Math.PI/180)
 }
 
-getAddressFromApi = (pos) => {
-	return new Promise(async (resolve, reject) => {
-		await new Promise(r => setTimeout(r, 1000));
-		$.get("https://api-adresse.data.gouv.fr/search/?q=" + County + "&lat=" + pos.lat + "&lon=" + pos.lon, function(address, status) {
-			resolve(address);
-		});
-	});
-}
-
-performAddress = async (test) => {
-	while (true) {
-		let pos = getPosInCountyPerimeter(true);
-		let address = await getAddressFromApi(pos);
-		if (address !== undefined) {
-			if (address.features.length > 0 && parseInt((address.features[0].properties.citycode).substring(0, 2)) === County) {
-				console.log("ok")
-				return {pos: pos, address: address};
-			}
-		}
-	}
-}
-
-getAddressInCounty = () => {
-	return new Promise(async (resolve, reject) => {
-		const pos = getPosInCountyPerimeter();
-		let address = await getAddressFromApi(pos);
-		let finalAddr = {};
-		if (address.features.length === 0 || parseInt((address.features[0].properties.citycode).substring(0, 2)) !== County) {
-			address = await performAddress("é");
-			finalAddr = address;
-		} else
-			finalAddr = {pos: pos, address: address}
-		resolve(finalAddr)
-	})
-}
-
 getPolygonBounds = (polygon) => {
 	let paths = polygon.getPaths();
 	let bounds = new google.maps.LatLngBounds();

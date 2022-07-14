@@ -27,7 +27,7 @@ clearGeoJson = () => {
 	Usage: drawMarker({x: x, y: y}, Path, {name: Name, lon: Lon, lat: Lat, id: Id});
  */
 
-drawMarker = (size, iconPath, Marker, layer) => {
+drawMarker = (size, iconPath, Marker) => {
 	const icon = { icon: new google.maps.MarkerImage(iconPath) };
 	const position = { position: new google.maps.LatLng(parseFloat(Marker.lat), parseFloat(Marker.lon)) };
 	const marker = new google.maps.Marker({

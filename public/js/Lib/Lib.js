@@ -32,3 +32,7 @@ httpGet = (theUrl) =>  {
 	xmlHttp.send( null );
 	return JSON.parse(xmlHttp.responseText);
 }
+
+sleep = (ms) => {
+	return new Promise(resolve => setTimeout(resolve, ms));
+}

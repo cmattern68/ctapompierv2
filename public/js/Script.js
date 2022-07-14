@@ -1,32 +1,5 @@
-let County = null;
-
-init = (county) => {
-	County = county;
-	//$('.olControlZoom').remove();
-	initMap();
-	delimitBorder()
-		.then(res => {
-			pinStations()
-				.then(res => {
-					loadVehicles()
-						.then(res => {
-							MissionCreator().then(res => {
-							}).catch(err => {
-								console.log(err);
-							});
-						}).catch(err => {
-						console.log(err);
-					})
-			}).catch(err => {
-				console.log(err);
-			})
-	}).catch(err => {
-		console.log(err);
-	});
-};
-
-gameLoop = () => {
-	ManageCall();
+init = async (county) => {
+    initMap();
+    let lobby = new Lobby(county);
+    await lobby.run();
 }
-
-setInterval(gameLoop, 500);
