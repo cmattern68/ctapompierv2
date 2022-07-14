@@ -1,5 +1,6 @@
 const categories = JSON.parse(read("/data/Categories.json"));
 let city = null;
+let selectedArray = {}
 
 getStationsDistances = (coordinates) => {
 	let stationsDistancesFromMission = {};
@@ -21,7 +22,7 @@ getStationsDistances = (coordinates) => {
 }
 
 updateVehicleDistances = (distancesArray) => {
-	vehiclesArray.forEach(vehicle => {
+	for (const [key, vehicle] of Object.entries(vehiclesArray)) {
 		const distance_prefix = "." + vehicle.id + "-distance";
 		let distance = "";
 
@@ -34,7 +35,7 @@ updateVehicleDistances = (distancesArray) => {
 				}
 			})
 		}
-	});
+	};
 }
 
 updateStationsOrder = (stationsCoordinates) => {
@@ -63,7 +64,95 @@ updateDistances = (coordinates) => {
 	updateStationsOrder(stationsCoordinates);
 }
 
+updatedSelectedVehicle = (id, add) => {
+	let jobId = $("#" + id + "_select").children(":selected").val();
+	let spanStr = "";
+	if (add == -1)
+		delete selectedArray[id];
+	else
+		selectedArray[id] = jobId;
+	let tmpJobArray = {}
+	console.log()
+	for (const [vehicleId, jobId] of Object.entries(selectedArray)) {
+		if (tmpJobArray[jobId] === undefined)
+			tmpJobArray[jobId] = 1;
+		else {
+			if (tmpJobArray[jobId] >= 0)
+				tmpJobArray[jobId] += add;
+			if (tmpJobArray[jobId] < 0)
+				tmpJobArray[jobId] = 0;
+		}
+	}
+	if (Object.keys(tmpJobArray).length > 0) {
+		for (const [jobId, nb] of Object.entries(tmpJobArray)) {
+			spanStr += nb + " " + jobsArray[jobId].name + ", ";
+		}
+		$(".vehicle-selected-span").text(spanStr.substring(0, spanStr.length - 2));
+	} else {
+		$(".vehicle-selected-span").text("N/A");
+	}
+}
+
+selectVPCE = (id) => {
+	const vehicle = vehiclesArray[id];
+	const stationId = vehicle.stations.id;
+	const stationsVehicle = vehiclesStation[stationId];
+	stationsVehicle.forEach(stationVehicle => {
+		if (stationVehicle.carry_cell) {
+			if (stationVehicle.status === 9) {
+				$('.' + stationVehicle.id).addClass("table-selected");
+				$('#' + stationVehicle.id + "_check").prop("checked", true);
+				updateVehicleStatus(0, stationVehicle.id);
+				updatedSelectedVehicle(stationVehicle.id, 1);
+			} else {
+				$('.' + id).removeClass("table-selected").addClass("table-unavailable");
+				$('.' + stationVehicle.id).addClass("table-selected");
+			}
+		}
+	});
+}
+
+unSelectVPCE = (id) => {
+	const vehicle = vehiclesArray[id];
+	const stationId = vehicle.stations.id;
+	const stationsVehicle = vehiclesStation[stationId];
+	stationsVehicle.forEach(stationVehicle => {
+		if (stationVehicle.carry_cell) {
+			if (stationVehicle.status !== 9) {
+				console.log($('.' + stationVehicle.id))
+				$('.' + stationVehicle.id).remove("table-selected");
+				console.log($('.' + stationVehicle.id))
+				$('#' + stationVehicle.id + "_check").prop("checked", false);
+				updateVehicleStatus(9, stationVehicle.id);
+				updatedSelectedVehicle(stationVehicle.id, -1);
+			}
+		}
+	});
+}
+
+isTrailerOrCellToSelect = (id) => {
+	if (vehiclesArray[id].is_trailer)
+		console.log("Is Trailer")
+	else if (vehiclesArray[id].is_cell)
+		selectVPCE(id)
+}
+
+isTrailerOrCellToUnSelect = (id) => {
+	if (vehiclesArray[id].is_trailer)
+		console.log("Is Trailer")
+	else if (vehiclesArray[id].is_cell)
+		unSelectVPCE(id)
+}
+
+preparedUpdatedSelectedVehicle = (jobId, vehicleId) => {
+	let isChecked = $("#" + vehicleId + "_check").is(":checked");
+	if (isChecked) {
+		updatedSelectedVehicle(vehicleId, 1)
+	}
+}
+
 cleanMissionBoard = () => {
+	selectedArray = {}
 	ClearInput();
 	$("#vehicles-tables > tbody").each((index, body) => {
 		$(body).remove()
@@ -76,10 +165,14 @@ hoverTr = (line) => {
 	if ($('.' + id[0]).length > 0) {
 		if (line.checked) {
 			$('.' + id[0]).addClass("table-selected");
-			updateVehicleStatus(0, id)
+			isTrailerOrCellToSelect(id[0]);
+			updateVehicleStatus(0, id[0])
+			updatedSelectedVehicle(id[0], 1);
 		} else {
-			$('.' + id[0]).removeClass("table-selected");
-			updateVehicleStatus(9, id)
+			$('.' + id[0]).removeClass("table-selected").removeClass("table-unavailable");
+			isTrailerOrCellToUnSelect(id[0]);
+			updateVehicleStatus(9, id[0]);
+			updatedSelectedVehicle(id[0], -1);
 		}
 	}
 }
@@ -140,6 +233,12 @@ $(document).ready(function() {
 		let value = $(this).find("option:selected").attr("value");
 		SetSubSelect(value);
 	});
+});
+
+$(document).on("change", ".select-vehicles-job", function() {
+	let jobId = $(this).find("option:selected").attr("value");
+	let vehicleId = $(this).attr("id").split("_")[0];
+	preparedUpdatedSelectedVehicle(jobId, vehicleId)
 });
 
 $(document).on("change", "input[name=emploi_check]", function() {

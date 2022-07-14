@@ -17,7 +17,7 @@ exports.get = (req, res) =>
                 model: models.vehicle_types,
                 as: "vehicle_types",
                 required: true,
-                attributes: ['type', 'label'],
+                attributes: ['type', 'label', 'carry_trailer', 'carry_cell','is_trailer', 'is_cell'],
                 include: [
                     {
                         model: models.vehicle_type_jobs,
@@ -49,6 +49,10 @@ exports.get = (req, res) =>
                     name: vehicle.stations.city,
                     coordinates: vehicle.stations.coordinates
                 },
+                carry_trailer: vehicle.vehicle_types.carry_trailer,
+                carry_cell: vehicle.vehicle_types.carry_cell,
+                is_trailer: vehicle.vehicle_types.is_trailer,
+                is_cell: vehicle.vehicle_types.is_cell,
                 vehicle_job: {}
             };
             vehicle.vehicle_types.vehicle_type_jobs.forEach(job => {
@@ -59,5 +63,15 @@ exports.get = (req, res) =>
         return res.status(200).json(vehiclesArray)
     }).catch(err => {
         return res.status(400).json({ vehicles: null })
+    })
+}
+
+exports.getJobs = (req, res) => {
+    models.vehicle_job.findAll({
+        attributes: ['id', 'name', 'staff', 'weight']
+    }).then(job => {
+        return res.status(200).json(job);
+    }).catch(err => {
+        return res.status(400).json({ job: null })
     })
 }

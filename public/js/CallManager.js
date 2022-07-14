@@ -14,7 +14,6 @@ EndCall = () => {
 }
 
 CreateCallPopup = () => {
-	callInProgress = true;
 	let modal = read("/Layout/CallPopup.html");
 	phoneNb = null;
 	if (getRandomInt(10) >= 8) {
@@ -37,8 +36,13 @@ CreateCallPopup = () => {
 ManageCall = () => {
 	if (!callInProgress && $('.call-popup').length === 0 && $('.dialog-popup').length === 0)
 		//if (getRandomInt(30) === 18)
-		if (!getRandomInt(1))
-			CreateCallPopup();
+		if (!getRandomInt(1)) {
+			callInProgress = true;
+			getAddressInCounty().then(address => {
+				missionLocInfo = address;
+				CreateCallPopup();
+			}).catch()
+		}
 }
 
 answerEvent = () => {

@@ -14,6 +14,18 @@ module.exports = {
       label: {
         type: Sequelize.STRING
       },
+      carry_trailer: {
+        type: Sequelize.BOOLEAN
+      },
+      carry_cell: {
+        type: Sequelize.BOOLEAN
+      },
+      is_trailer: {
+        type: Sequelize.BOOLEAN
+      },
+      is_cell: {
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

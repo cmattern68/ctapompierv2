@@ -8,5 +8,6 @@ router.use(bodyParser.urlencoded({extended: true}));
 router.use(express.json());
 
 router.get('/', equipementsController.get);
+router.get('/jobs', equipementsController.getJobs);
 
 module.exports = router;

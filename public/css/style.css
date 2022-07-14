@@ -260,6 +260,11 @@ textarea[name=observations] {
     color: #000000 !important;
 }
 
+.table-unavailable {
+    background-color: #7e7273 !important;
+    color: #000000 !important;
+}
+
 /*TODO Séléctionné*/
 .btn-status-0 {
     background-color: #f1c40f !important;
@@ -416,7 +421,11 @@ textarea[name=observations] {
 
 /*En alerte*/
 .btn-status-101 {
-    background-color: #74148d !important;
+    background-color: #800080 !important;
     color: #fffbf0 !important;
     border-color: #8d908e !important;
+}
+
+.list-vehicle-selected {
+    margin-top: 3em;
 }

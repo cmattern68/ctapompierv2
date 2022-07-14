@@ -7,6 +7,7 @@ const FooterDialogLayout = read("/Layout/FooterDialogLayout.html");
 let Mission = null;
 let MsgToDisplay = 0;
 let LoadInProgress = false;
+let missionLocInfo = {}
 
 LocateMission = (pos) => {
 	drawMarker({x: 16, y: 16}, "/assets/mission.png", {name: "Feu de Maison", lon: pos.lon, lat: pos.lat, id: "Mission_1", title: "Feu de Maison"});
@@ -32,8 +33,7 @@ MessageNext = async () => {
 	} else if (message.origin === 1) {
 		let CallerLayout = CallerDialogLayout;
 		if (message.locate === true) {
-			const pos = getPosInCountyPerimeter();
-			let address = await getAddressFromPos(pos);
+			const address = missionLocInfo.address;
 			let msg = tagToText("{{address}}", message.message, address.features[0].properties.label);
 			CallerLayout = tagToText("{{callerMessage}}", CallerLayout, msg);
 			$(CallerLayout).insertBefore($('.btn-msg-next'));

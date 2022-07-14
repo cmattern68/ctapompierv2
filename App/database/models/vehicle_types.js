@@ -23,7 +23,11 @@ module.exports = (sequelize, DataTypes) => {
   }
   vehicle_types.init({
     type: DataTypes.STRING,
-    label: DataTypes.STRING
+    label: DataTypes.STRING,
+    carry_trailer: DataTypes.BOOLEAN,
+    carry_cell: DataTypes.BOOLEAN,
+    is_trailer: DataTypes.BOOLEAN,
+    is_cell: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'vehicle_types',

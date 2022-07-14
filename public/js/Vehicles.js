@@ -1,4 +1,5 @@
-let vehiclesArray = []
+let vehiclesArray = {}
+let jobsArray = {}
 let vehiclesStation = {}
 const StatusEnum = Object.freeze({
     // Status Reflexes
@@ -32,7 +33,14 @@ const StatusEnum = Object.freeze({
 
 loadVehicles = () => {
     return new Promise((resolve, reject) => {
-        vehiclesArray = httpGet("http://localhost/equipements?county=" + County);
+        let vehiclesList = httpGet("http://localhost/equipements?county=" + County);
+        let jobsList = httpGet("http://localhost/equipements/jobs");
+        vehiclesList.forEach(vehicle => {
+            vehiclesArray[vehicle.id] = vehicle;
+        })
+        jobsList.forEach(job => {
+            jobsArray[job.id] = job;
+        })
         groupByStation()
         fillMissionTabVehicleTable();
         fillVehicleTabVehicleTable();
@@ -41,16 +49,24 @@ loadVehicles = () => {
 }
 
 groupByStation = () => {
-    vehiclesArray.forEach(vehicle => {
+    for (const [key, vehicle] of Object.entries(vehiclesArray)) {
         if (vehiclesStation[vehicle.stations.id] === undefined)
             vehiclesStation[vehicle.stations.id] = [];
         vehiclesStation[vehicle.stations.id].push(vehicle);
-    });
+    };
 }
 
 updateVehicleStatus = (status, id) => {
     let classList = $("#vehicle-" + id).attr("class").split(" ");
     let tgClass = ""
+    let tgKey, i = 0;
+    vehiclesArray[id].status = status;
+    vehiclesStation[vehiclesArray[id].stations.id].forEach(val => {
+        if (val.id === id)
+            tgKey = i;
+        ++i;
+    })
+    vehiclesStation[vehiclesArray[id].stations.id][tgKey].status = status;
     classList.forEach(_class => {
         if (_class.match("btn-status-") != null) {
             tgClass = _class
@@ -87,7 +103,8 @@ fillMissionTabVehicleTable = () => {
     let layout = read("/Layout/VehicleMissionTabLayout.html");
     let currentId = "";
     const endBody = "</tbody>";
-    vehiclesArray.forEach(vehicle => {
+
+    for (const [key, vehicle] of Object.entries(vehiclesArray)) {
         const classId = vehicle.stations.id + "-station-vehicles";
         if (vehicle.stations.id !== currentId) {
             const startBody = "<tbody class='" + classId + "'>";
@@ -115,6 +132,6 @@ fillMissionTabVehicleTable = () => {
         copyLayout = tagToText("{{options}}", copyLayout, select)
         copyLayout = tagToText("{{distance}}", copyLayout, "N/A")
         $('.' + classId).append(copyLayout);
-    });
+    };
     $('#vehicles-tables').append(endBody)
 }

@@ -19,32 +19,39 @@ function deg2rad(deg) {
 }
 
 getAddressFromApi = (pos) => {
-	return new Promise((resolve, reject) => {
+	return new Promise(async (resolve, reject) => {
+		await new Promise(r => setTimeout(r, 1000));
 		$.get("https://api-adresse.data.gouv.fr/search/?q=" + County + "&lat=" + pos.lat + "&lon=" + pos.lon, function(address, status) {
 			resolve(address);
 		});
 	});
 }
 
-performAddress = async (address) => {
+performAddress = async (test) => {
 	while (true) {
 		let pos = getPosInCountyPerimeter(true);
-		address = await getAddressFromApi(pos);
-		if (address.features.length > 0 && parseInt((address.features[0].properties.citycode).substring(0, 2)) === County) {
-			return address;
+		let address = await getAddressFromApi(pos);
+		if (address !== undefined) {
+			if (address.features.length > 0 && parseInt((address.features[0].properties.citycode).substring(0, 2)) === County) {
+				console.log("ok")
+				return {pos: pos, address: address};
+			}
 		}
 	}
 }
 
-getAddressFromPos = async (pos) => {
-	LoadInProgress = true;
-	const LoadLayout = read("Layout/LoadLayout.html");
-	$(LoadLayout).insertBefore($('.btn-msg-next'));
-	let address = await getAddressFromApi(pos);
-	if (address.features.length === 0 || parseInt((address.features[0].properties.citycode).substring(0, 2)) !== County)
-		address = await performAddress(address);
-	$('.load-address').remove();
-	return address;
+getAddressInCounty = () => {
+	return new Promise(async (resolve, reject) => {
+		const pos = getPosInCountyPerimeter();
+		let address = await getAddressFromApi(pos);
+		let finalAddr = {};
+		if (address.features.length === 0 || parseInt((address.features[0].properties.citycode).substring(0, 2)) !== County) {
+			address = await performAddress("é");
+			finalAddr = address;
+		} else
+			finalAddr = {pos: pos, address: address}
+		resolve(finalAddr)
+	})
 }
 
 getPolygonBounds = (polygon) => {
