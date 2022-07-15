@@ -255,12 +255,15 @@ textarea[name=observations] {
     margin: 3px;
 }
 
-.table-selected {
+.table-status-available {
+}
+
+.table-status-selected {
     background-color: #f1c40f !important;
     color: #000000 !important;
 }
 
-.table-unavailable {
+.table-status-unavailable {
     background-color: #7e7273 !important;
     color: #000000 !important;
 }

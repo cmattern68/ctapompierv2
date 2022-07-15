@@ -21,11 +21,12 @@ $(document).ready(function() {
 });
 
 $(document).on("change", "input[name=emploi_check]", function() {
-    MissionBoardPanel.hoverVehicle(this);
+    const vehicleId = $(this).attr("id").split("_")[0];
+    const stationId = Vehicles[vehicleId].station_id;
+    MissionBoardPanel.SelectVehicle(vehicleId, stationId, this.checked);
 });
 
 $(document).on("change", ".select-vehicles-job", function() {
-    let jobId = $(this).find("option:selected").attr("value");
     let vehicleId = $(this).attr("id").split("_")[0];
     MissionBoardPanel.preparedUpdatedSelectedVehicle(vehicleId);
 });

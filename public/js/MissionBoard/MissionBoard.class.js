@@ -1,6 +1,8 @@
 class MissionBoard {
     constructor() {
         this.categories = JSON.parse(read("/data/Categories.json"));
+        this.names = read("/data/name.csv").split("\n")
+        this.names.shift()
         this.SetSelect();
         this.setOriginaryVehicleTab();
         this.selectedList = {};
@@ -30,7 +32,7 @@ class MissionBoard {
                             currentId = station_id;
                         }
                         let copyLayout = layout;
-                        copyLayout = tagToText("{{check_id}}", copyLayout, station_id + "_" + vehicle.id)
+                        copyLayout = tagToText("{{id}}", copyLayout, vehicle.id)
                         copyLayout = tagToText("{{id}}", copyLayout, vehicle.id)
                         copyLayout = tagToText("{{id}}", copyLayout, vehicle.id)
                         copyLayout = tagToText("{{id}}", copyLayout, vehicle.id)
@@ -80,74 +82,88 @@ class MissionBoard {
         });
     }
 
-    hoverVehicle = (line) => {
-        const arrId = $(line).attr('id').split("_");
-        const stationId = arrId[0];
-        const vehicleId = arrId[1];
-        if ($('.' + vehicleId).length > 0) {
-            if (line.checked) {
-                $('.' + vehicleId).addClass("table-selected");
-                Stations[stationId].vehicles[vehicleId].updateStatus(0);
-                if (Stations[stationId].vehicles[vehicleId].is_cell) {
-                    let found = false;
-                    console.log("-----------------------------------")
-                    for (const [vId, v] of Object.entries(Stations[stationId].vehicles)) {
-                        console.log(v.name + ": " + v.status)
-                        if (v.carry_cell && v.status === 9) {
-                            let elem = $("#" + stationId + "_" + vId + "_check");
-                            elem.prop("checked", true)
-                            this.cellsVpcesLink[vId] = vehicleId;
-                            this.hoverVehicle(elem[0])
-                            found = true;
-                        }
-                    }
-                    if (!found) {
-                        $('.' + vehicleId).removeClass("table-selected").addClass("table-unavailable");
-                    }
+    setSelectedVehiclesAvailable = () => {
+        for (const [station_id, station] of Object.entries(Stations)) {
+            for (const [vehicle_id, vehicle] of Object.entries(station.vehicles)) {
+                if (vehicle.status === 0) {
+                    this.SetVehicleLineStatus(station_id, vehicle_id, 9);
                 }
-                this.updatedSelectedVehicle(vehicleId, 1);
-            } else {
-                if ($('.' + vehicleId).hasClass("table-selected"));
-                    $('.' + vehicleId).removeClass("table-selected");
-                if ($('.' + vehicleId).hasClass("table-unavailable"));
-                    $('.' + vehicleId).removeClass("table-unavailable");
-                Stations[stationId].vehicles[vehicleId].updateStatus(9, "b");
-                if ((Stations[stationId].vehicles[vehicleId].is_cell || Stations[stationId].vehicles[vehicleId].carry_cell)
-                    && Object.keys(this.cellsVpcesLink).length > 0) {
-                    if (this.cellsVpcesLink[vehicleId] === undefined) {
-                        console.log("a")
-                        for (const [vId,v] of Object.entries(this.cellsVpcesLink)) {
-                            if (v === vehicleId) {
-                                $("#" + stationId + "_" + vId + "_check").prop("checked", false);
-                                if ($('.' + vId).hasClass("table-selected"));
-                                $('.' + vId).removeClass("table-selected");
-                                if ($('.' + vId).hasClass("table-unavailable"));
-                                $('.' + vId).removeClass("table-unavailable");
-                                Stations[stationId].vehicles[vId].updateStatus(9);
-                                this.updatedSelectedVehicle(vId, -1);
-                                delete this.cellsVpcesLink[vehicleId];
-                                break;
-                            }
-                        }
-                    } else {
-                        $("#" + stationId + "_" + this.cellsVpcesLink[vehicleId] + "_check").prop("checked", false);
-                        if ($('.' + this.cellsVpcesLink[vehicleId]).hasClass("table-selected"));
-                        $('.' + this.cellsVpcesLink[vehicleId]).removeClass("table-selected");
-                        if ($('.' + this.cellsVpcesLink[vehicleId]).hasClass("table-unavailable"));
-                        $('.' + this.cellsVpcesLink[vehicleId]).removeClass("table-unavailable");
-                        Stations[stationId].vehicles[this.cellsVpcesLink[vehicleId]].updateStatus(9);
-                        this.updatedSelectedVehicle(this.cellsVpcesLink[vehicleId], -1);
-                        delete this.cellsVpcesLink[vehicleId];
-                    }
-                }
-                this.updatedSelectedVehicle(vehicleId, -1);
             }
         }
     }
 
+    SetVehicleLineStatus = (StationId, VehicleId, status) => {
+        let line = $("." + VehicleId);
+        if (line.is('[class*="table-status-"]')) {
+            line.attr("class").split(" ").forEach(classname => {
+                if (classname.includes("table-status-")) {
+                    if (classname !== "table-status-" + StatusEnum[status].tbClass) {
+                        line.removeClass(classname);
+                    }
+                }
+            })
+        }
+        line.addClass("table-status-" + StatusEnum[status].tbClass)
+        Stations[StationId].vehicles[VehicleId].updateStatus(status);
+        this.updatedSelectedVehicle(VehicleId, status === 0 ? (1) : (-1))
+    }
+
+    SelectVPCE = (StationId, VehicleId) => {
+        if (Stations[StationId].vehicles[VehicleId].is_cell) {
+            let found = false;
+            for (const [vpceId, vpce] of Object.entries(Stations[StationId].vehicles)) {
+                if (vpce.carry_cell && vpce.status === 9) {
+                    found = true;
+                    $("#" + vpceId + "_check").trigger("click");
+                    this.cellsVpcesLink[vpceId] = VehicleId;
+                } else if (vpce.carry_cell && vpce.status === 0) {
+                    if (this.cellsVpcesLink[vpceId] === undefined) {
+                        let checkbox = $("#" + vpceId + "_check");
+                        found = true;
+                        if (!checkbox[0].checked)
+                            $("#" + vpceId + "_check").trigger("click");
+                        this.cellsVpcesLink[vpceId] = VehicleId;
+                    }
+                }
+            }
+            if(!found) {
+                this.SetVehicleLineStatus(StationId, VehicleId, 8);
+            }
+        }
+    }
+
+    UnSelectVPCE = (StationId, VehicleId) => {
+        if (Stations[StationId].vehicles[VehicleId].is_cell || Stations[StationId].vehicles[VehicleId].carry_cell) {
+            if (this.cellsVpcesLink[VehicleId] === undefined) {
+                for (const [vpce_id, cell_id] of Object.entries(this.cellsVpcesLink)) {
+                    if (cell_id === VehicleId) {
+                        let checkbox = $("#" + vpce_id + "_check");
+                        if (checkbox[0].checked)
+                            checkbox.trigger("click");
+                        delete this.cellsVpcesLink[vpce_id];
+                    }
+                }
+            } else {
+                let checkbox = $("#" + this.cellsVpcesLink[VehicleId] + "_check");
+                if (checkbox[0].checked)
+                    checkbox.trigger("click");
+                delete this.cellsVpcesLink[VehicleId];
+            }
+        }
+    }
+
+    SelectVehicle = (VehicleId, StationId, select) => {
+        if (select) {
+            this.SetVehicleLineStatus(StationId, VehicleId, 0);
+            this.SelectVPCE(StationId, VehicleId);
+        } else {
+            this.SetVehicleLineStatus(StationId, VehicleId, 9);
+            this.UnSelectVPCE(StationId, VehicleId);
+        }
+    }
+
     preparedUpdatedSelectedVehicle = (vehicleId) => {
-        let stationId = Vehicles[vehicleId].station_id;
-        let isChecked = $("#" + stationId + "_" + vehicleId + "_check").is(":checked");
+        let isChecked = $("#" + vehicleId + "_check").is(":checked");
         if (isChecked) {
             this.updatedSelectedVehicle(vehicleId, 1)
         }
@@ -229,7 +245,9 @@ class MissionBoard {
     }
 
     setName = () => {
-        this.name = "MATTERN Corentin";
+        const nameId = getRandomInt(this.names.length)
+        const name = this.names[nameId].split(',');
+        this.name = name[1] + " " + name[0]
         $("#form-applicant").val(this.name)
     }
 
@@ -239,12 +257,12 @@ class MissionBoard {
             Stations[stationId].vehicles[vehicleId].updateStatus(101)
             console.log(Stations[stationId].vehicles[vehicleId])
         }
-        this.clean(true);
+        this.clean();
     }
 
-    clean = (newMission = false) => {
+    clean = () => {
         this.SetSelect();
-        this.ClearInput(newMission);
+        this.ClearInput();
         $("#vehicles-tables > tbody").each((index, body) => {
             $(body).remove()
         })
@@ -258,7 +276,7 @@ class MissionBoard {
         this.name = "";
     }
 
-    ClearInput = (newMission = false) => {
+    ClearInput = () => {
         $('#form-subcategorie').val("defaultSubCatOption").change();
         $('#form-subcategorie').prop("disabled", true);
         $('#form-categorie').val("defaultCatOption").change();
@@ -268,46 +286,36 @@ class MissionBoard {
         $("#form-address").val("");
         $("#form-observations").val("");
         $(".btn-srv").prop("checked", false)
-        const checkbox = $(".emploi_check:checkbox:checked")
-        if (!newMission) {
-            for (const [key, vehicleLine] of Object.entries(checkbox)) {
-                if (typeof(vehicleLine) === "object" && vehicleLine.name === "emploi_check") {
-                    const vehicle_id = $(vehicleLine).attr( "id")
-                    $("#" + vehicle_id).prop("checked", false)
-                    const t = $("#" + vehicle_id)
-                    this.hoverVehicle(vehicleLine)
-                }
-            }
-        }
+        this.setSelectedVehiclesAvailable();
     }
 }
 
 const StatusEnum = Object.freeze({
     // Status Reflexes
-    0: {label: "Séléctionné"},
-    1: {label: "Parti"},
-    2: {label: "Sur les Lieux"},
-    3: {label: "Message"},
-    4: {label: "Message Urgent"},
-    5: {label: "Transport Hôpital"},
-    6: {label: "Arrivée Hôpital"},
-    7: {label: "Disponible Radio"},
-    8: {label: "Indisponible"},
-    9: {label: "Disponible"},
+    0: {label: "Séléctionné", tbClass: "selected"},
+    1: {label: "Parti", tbClass: "hiden"},
+    2: {label: "Sur les Lieux", tbClass: "hiden"},
+    3: {label: "Message", tbClass: "hiden"},
+    4: {label: "Message Urgent", tbClass: "hiden"},
+    5: {label: "Transport Hôpital", tbClass: "hiden"},
+    6: {label: "Arrivée Hôpital", tbClass: "hiden"},
+    7: {label: "Disponible Radio", tbClass: "hiden"},
+    8: {label: "Indisponible", tbClass: "unavailable"},
+    9: {label: "Disponible", tbClass: "available"},
     // Groupe Sanitaires
-    22: {label: "SMUR sur les Lieux"},
+    22: {label: "SMUR sur les Lieux", tbClass: "hiden"},
     // Groupe Service Publics
-    30: {label: "Police sur les Lieux"},
-    31: {label: "Gendarmerie sur les Lieux"},
-    32: {label: "ERDF sur les Lieux"},
-    33: {label: "GRDF sur les Lieux"},
-    34: {label: "DIR sur les Lieux"},
-    35: {label: "Conseil Général sur les Lieux"},
-    36: {label: "Police Municipale sur les Lieux"},
-    37: {label: "Brigades Vertes sur les Lieux"},
-    38: {label: "Maire sur les Lieux"},
+    30: {label: "Police sur les Lieux", tbClass: "hiden"},
+    31: {label: "Gendarmerie sur les Lieux", tbClass: "hiden"},
+    32: {label: "ERDF sur les Lieux", tbClass: "hiden"},
+    33: {label: "GRDF sur les Lieux", tbClass: "hiden"},
+    34: {label: "DIR sur les Lieux", tbClass: "hiden"},
+    35: {label: "Conseil Général sur les Lieux", tbClass: "hiden"},
+    36: {label: "Police Municipale sur les Lieux", tbClass: "hiden"},
+    37: {label: "Brigades Vertes sur les Lieux", tbClass: "hiden"},
+    38: {label: "Maire sur les Lieux", tbClass: "hiden"},
     // Groupe Génériques
-    25: {label: "Disponible Hors Secteur"},
-    44: {label: "Disponible sur les Lieux"},
-    101: {label: "En Alerte"}
+    25: {label: "Disponible Hors Secteur", tbClass: "hiden"},
+    44: {label: "Disponible sur les Lieux", tbClass: "hiden"},
+    101: {label: "En Alerte", tbClass: "hiden"}
 });
