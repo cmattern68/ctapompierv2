@@ -5,10 +5,22 @@
       "label": "Accident",
       "subcat": [
         {
-          "label": "Accident de Circulation"
-        },
-        {
-          "label": "Accident de Circulation avec Désincarceration"
+          "label": "Accident de Circulation",
+          "nominal_jobs": [
+            {
+              "138d850c-c061-453f-b124-17708ef30576": 1,
+              "f45eea54-aff6-41ff-adb4-5fd5df7024e5": 1,
+              "optional": false
+            },
+            {
+              "e230f6a0-fa29-49d3-99f5-76ca43434223": 1,
+              "optional": false
+            },
+            {
+              "55a32289-03d5-4f92-8fa0-3822700575a3": 1,
+              "optional": true
+            }
+          ]
         }
       ]
     },
@@ -17,13 +29,31 @@
       "label": "Incendie",
       "subcat": [
         {
-          "label": "Feu d'Habitation"
-        },
-        {
-          "label": "Feu d'Exploitation Agricole"
-        },
-        {
-          "label": "Feu de Voiture"
+          "label": "Feu d'Habitation",
+          "nominal_jobs": [
+            {
+              "7d5399a3-fa88-4c01-bd40-fb6281beb516": 2
+            },
+            {
+              "b12d72c7-70c4-486d-a030-94640328b170": 1,
+              "optional": false
+            },
+            {
+              "b29ba2b6-6144-45a9-9ef1-cb4f4928facc": 1,
+              "b88aad34-d4e2-4c36-92e5-cdd93e24bf61": 1,
+              "optional": false
+            },
+            {
+              "02359002-b11d-40a5-bc83-84c4b3ce8a96": 1,
+              "59968404-2254-4ed6-a704-1a44a881b693": 1,
+              "optional": false
+            },
+            {
+              "43b00cce-990a-4e5d-9af8-619ee1d6daa0": 1,
+              "fccf92c8-c59e-48dc-b71a-f5e7e0a6e3b8": 1,
+              "optional": true
+            }
+          ]
         }
       ]
     },
@@ -32,10 +62,13 @@
       "label": "Opérations Diverses",
       "subcat": [
         {
-          "label": "Epuisement de Locaux"
-        },
-        {
-          "label": "Dégagement de Voie Publique"
+          "label": "Epuisement de Locaux",
+          "nominal_jobs": [
+            {
+              "71adf1a9-db8c-4eab-a06e-dfa67db71a33": 1,
+              "optional": false
+            }
+          ]
         }
       ]
     },
@@ -44,16 +77,17 @@
       "label": "Secours à Personne",
       "subcat": [
         {
-          "label": "Malaise à Domicile ou dans Lieu Privée"
-        },
-        {
-          "label": "Carence d'Ambulance Privée"
-        },
-        {
-          "label": "AVC"
-        },
-        {
-          "label": "Arrêt Cardio-Respiratoire"
+          "label": "Malaise à Domicile ou dans Lieu Privée",
+          "nominal_jobs": [
+            {
+              "e230f6a0-fa29-49d3-99f5-76ca43434223": 1,
+              "optional": false
+            },
+            {
+              "55a32289-03d5-4f92-8fa0-3822700575a3": 1,
+              "optional": true
+            }
+          ]
         }
       ]
     },
@@ -62,13 +96,17 @@
       "label": "Opérations Spécifiques",
       "subcat": [
         {
-          "label": "Polution"
-        },
-        {
-          "label": "Effrondrement de Batiment"
-        },
-        {
-          "label": "Risque RAD"
+          "label": "Polution",
+          "nominal_jobs": [
+            {
+              "71adf1a9-db8c-4eab-a06e-dfa67db71a33": 1,
+              "optional": false
+            },
+            {
+              "b12d72c7-70c4-486d-a030-94640328b170": 1,
+              "optional": false
+            }
+          ]
         }
       ]
     },
@@ -77,7 +115,8 @@
       "label": "Autre",
       "subcat": [
         {
-          "label": "Manoeuvre"
+          "label": "Manoeuvre",
+          "nominal_jobs": null
         }
       ]
     }

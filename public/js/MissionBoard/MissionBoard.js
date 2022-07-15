@@ -8,6 +8,12 @@ $(document).ready(function() {
             call.cancel();
         MissionBoardPanel.clean();
     });
+    $("#engage").click(function() {
+        if (call !== null) {
+            call.cancel();
+            MissionBoardPanel.engage();
+        }
+    });
     $("#form-categorie").change(function() {
         let value = $(this).find("option:selected").attr("value");
         MissionBoardPanel.SetSubSelect(value);

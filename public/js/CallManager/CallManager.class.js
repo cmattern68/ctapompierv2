@@ -42,6 +42,8 @@ class Call {
                 audio = null;
             }*/
             this.StartDialog();
+            MissionBoardPanel.setName();
+            MissionBoardPanel.setPhone(this.originCall);
         }
     }
 
@@ -115,6 +117,8 @@ class Call {
     LocateMission = (pos) => {
         drawMarker({x: 16, y: 16}, "/assets/mission.png", {name: "Feu de Maison", lon: pos.lon, lat: pos.lat, id: "Mission_1", title: "Feu de Maison"});
         zoomOnPos({lon: pos.lon, lat: pos.lat}, 14);
+        MissionBoardPanel.orderByNearest(pos);
+        MissionBoardPanel.setAddress(this.address);
     }
 
     endConversation = () => {

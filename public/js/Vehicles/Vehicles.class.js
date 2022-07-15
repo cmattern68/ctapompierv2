@@ -24,5 +24,6 @@ class Vehicle {
             }
         });
         $("#vehicle-" + this.id).removeClass(tgClass).addClass("btn-status-" + status).prop('title', StatusEnum[status].label);
+        this.status = status;
     }
 }

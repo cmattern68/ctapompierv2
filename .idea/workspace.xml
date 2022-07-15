@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="200f59b2-3cc2-40cf-9e20-d697e07a4fc1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/Lobby/Lobby.class.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/Lobby/Lobby.class.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/data/Categories.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/data/Categories.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/CallManager/CallManager.class.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/CallManager/CallManager.class.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/MissionBoard/MissionBoard.class.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/MissionBoard/MissionBoard.class.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/MissionBoard/MissionBoard.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/MissionBoard/MissionBoard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/Vehicles/Vehicles.class.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/Vehicles/Vehicles.class.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/mission.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/mission.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,15 +37,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "WebServerToolWindowFactoryState": "true",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Users\\Corentin\\AppData\\Local\\JetBrains\\Toolbox\\apps\\WebStorm\\ch-0\\221.5921.27\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Corentin\\AppData\\Local\\JetBrains\\Toolbox\\apps\\WebStorm\\ch-0\\221.5921.27\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Corentin\Documents\Projets Perso\ctapompierv2\public\js\CallManager" />
@@ -71,7 +75,8 @@
       <workItem from="1657643856489" duration="13852000" />
       <workItem from="1657702493116" duration="16473000" />
       <workItem from="1657745448955" duration="6730000" />
-      <workItem from="1657793549915" duration="33804000" />
+      <workItem from="1657793549915" duration="34899000" />
+      <workItem from="1657871065315" duration="19784000" />
     </task>
     <servers />
   </component>
