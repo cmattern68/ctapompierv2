@@ -50,7 +50,6 @@ module.exports = {
       { id: "c0b4c47d-799c-4ed4-a3ed-7a68a7f8ae57", vehicle_job: "fccf92c8-c59e-48dc-b71a-f5e7e0a6e3b8", vehicle_type: "c3d9f332-7d1b-41d7-a933-ae24ff31dfa2", createdAt: new Date(), updatedAt: new Date() }, //vpsi
 
       { id: "fc21d4ab-970a-4481-90bf-7f3b85da559b", vehicle_job: "b29ba2b6-6144-45a9-9ef1-cb4f4928facc", vehicle_type: "34ab0c8b-882e-46d5-875a-56025c1d85d8", createdAt: new Date(), updatedAt: new Date() }, //epsa24
-      { id: "0d187977-5bd5-4c96-a30c-c21905422699", vehicle_job: "b88aad34-d4e2-4c36-92e5-cdd93e24bf61", vehicle_type: "34ab0c8b-882e-46d5-875a-56025c1d85d8", createdAt: new Date(), updatedAt: new Date() }, //epaps
 
       { id: "2af90ee8-6530-4205-a530-4b7955422d00", vehicle_job: "c4e415e3-e37b-4751-84c8-dada733499cd", vehicle_type: "421660e9-1a3a-47b6-920c-f3fd44649245", createdAt: new Date(), updatedAt: new Date() }, //vft
 
@@ -64,7 +63,7 @@ module.exports = {
       { id: "e6b135c0-5eb9-455a-950c-796f0737d7d4", vehicle_job: "40d1a897-563a-486a-afc1-43c6b65b7b6b", vehicle_type: "f4720f50-d079-4f10-8bc9-fb1f0073348c", createdAt: new Date(), updatedAt: new Date() }, //VPCE PMA 10 10
       { id: "8f6daf14-0f45-4beb-b821-76a5b6837703", vehicle_job: "40d1a897-563a-486a-afc1-43c6b65b7b6b", vehicle_type: "0b60ed5f-5d7c-4043-880f-700753d87eb3", createdAt: new Date(), updatedAt: new Date() }, //VPMA PMA 40 10
       { id: "4067d6e6-a21e-490b-9e74-0f95c9e7a160", vehicle_job: "14a6b667-097e-48b7-a7e1-032996f58d89", vehicle_type: "0b60ed5f-5d7c-4043-880f-700753d87eb3", createdAt: new Date(), updatedAt: new Date() }, //VPMA PMA 40
-      { id: "fec8edfb-050b-4646-a452-75be2638a868", vehicle_job: "59968404-2254-4ed6-a704-1a44a881b693", vehicle_type: "7a5ff60e-4d0a-4469-814f-85f4f5a966fe", createdAt: new Date(), updatedAt: new Date() }, //VPCE CECI
+      { id: "fec8edfb-050b-4646-a452-75be2638a868", vehicle_job: "02359002-b11d-40a5-bc83-84c4b3ce8a96", vehicle_type: "7a5ff60e-4d0a-4469-814f-85f4f5a966fe", createdAt: new Date(), updatedAt: new Date() }, //VPCE CECI
       { id: "bc34446a-8611-4f6d-8e90-e9d1a18d79db", vehicle_job: "987ede2c-9c64-4827-8977-1271e1350c2d", vehicle_type: "1be8746a-fddb-4b64-9d3d-1b9ed49cde33", createdAt: new Date(), updatedAt: new Date() }, //VPMA CEPRO
 
     ], {});

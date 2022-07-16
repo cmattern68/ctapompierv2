@@ -7,12 +7,12 @@ class StatBoard {
 
     setMission = (nb) => {
         this.current_mission += nb;
-        $('.missions-count').text(" " + this.answered_call);
+        $('.missions-count').text(" " + this.current_mission);
     }
 
     setVehicle = (nb) => {
         this.current_vehicle_in_mission += nb;
-        $('.vehicles-missions').text(" " + this.answered_call);
+        $('.vehicles-missions').text(" " + this.current_vehicle_in_mission);
     }
 
     setAnswered = (nb) => {

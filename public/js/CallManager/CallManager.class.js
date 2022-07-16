@@ -34,6 +34,9 @@ class Call {
 
     answer = () => {
         if ($('.call-popup').length > 0) {
+            MissionBoardPanel.clean();
+            callPreparing = false;
+            callInProgress = true;
             Stats.setAnswered(1);
             $('.call-popup').remove();
             $('#mission-tab').trigger('click');
@@ -50,6 +53,7 @@ class Call {
     decline = () => {
         if ($('.call-popup').length > 0) {
             $('.call-popup').remove();
+            callPreparing = false
             callInProgress = false;
             call = null;
             /*if (audio !== null) {
@@ -119,6 +123,7 @@ class Call {
         zoomOnPos({lon: pos.lon, lat: pos.lat}, 14);
         MissionBoardPanel.orderByNearest(pos);
         MissionBoardPanel.setAddress(this.address);
+        MissionBoardPanel.SetNominalDepartureFromLocationProcess();
     }
 
     endConversation = () => {
@@ -132,7 +137,6 @@ class Call {
             $('.dialog-popup').remove();
         }
         $('#missions-tab').trigger('click');
-        //cleanMissionBoard();
         callInProgress = false;
         call = null;
     }

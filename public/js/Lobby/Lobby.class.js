@@ -6,6 +6,7 @@ let County = "";
 let GeoBorder = {};
 let Stations = {};
 let callInProgress = false;
+let callPreparing = false;
 let call = null;
 let Stats = {}
 let MissionBoardPanel = {}

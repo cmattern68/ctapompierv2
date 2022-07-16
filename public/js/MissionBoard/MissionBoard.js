@@ -18,6 +18,11 @@ $(document).ready(function() {
         let value = $(this).find("option:selected").attr("value");
         MissionBoardPanel.SetSubSelect(value);
     });
+
+    $("#form-subcategorie").change(function() {
+        let value = $(this).find("option:selected").attr("value");
+        MissionBoardPanel.SetNominalDeparture(value);
+    });
 });
 
 $(document).on("change", "input[name=emploi_check]", function() {

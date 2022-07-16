@@ -25,8 +25,7 @@ module.exports = {
       { id: "f45eea54-aff6-41ff-adb4-5fd5df7024e5", name: "FPTSR4", staff: 4, weight: 30, createdAt: new Date(), updatedAt: new Date() },
       { id: "1a3c366b-a4fd-4034-b9e8-41ffe12f6f8a", name: "FPTSRT6", staff: 6, weight: 40, createdAt: new Date(), updatedAt: new Date() },
       { id: "e1a2d70e-e022-456d-a5d7-15f8d1ab3842", name: "FPTSRT4", staff: 4, weight: 50, createdAt: new Date(), updatedAt: new Date() },
-      { id: "b29ba2b6-6144-45a9-9ef1-cb4f4928facc", name: "EPSA24", staff: 2, weight: 0, createdAt: new Date(), updatedAt: new Date() },
-      { id: "b88aad34-d4e2-4c36-92e5-cdd93e24bf61", name: "EPAPS", staff: 2, weight: 10, createdAt: new Date(), updatedAt: new Date() },
+      { id: "b29ba2b6-6144-45a9-9ef1-cb4f4928facc", name: "EPA", staff: 2, weight: 0, createdAt: new Date(), updatedAt: new Date() },
       { id: "c4e415e3-e37b-4751-84c8-dada733499cd", name: "VFT", staff: 2, weight: 0, createdAt: new Date(), updatedAt: new Date() },
 
       { id: "40d1a897-563a-486a-afc1-43c6b65b7b6b", name: "PMA 10", staff: 4, weight: 0, createdAt: new Date(), updatedAt: new Date() },

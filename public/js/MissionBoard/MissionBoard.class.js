@@ -5,7 +5,9 @@ class MissionBoard {
         this.names.shift()
         this.SetSelect();
         this.setOriginaryVehicleTab();
-        this.selectedList = {};
+        this.selectedCat = null;
+        this.selectedSubCat = null;
+        this.selectedList= {};
         this.missionPos = [];
         this.missionAddress = {};
         this.orderedStationsList = [];
@@ -18,11 +20,12 @@ class MissionBoard {
         let layout = read("/Layout/VehicleMissionTabLayout.html");
         let currentId = null;
         const endBody = "</tbody>";
+        let dispo_status = [0, 7, 9, 25, 44]
 
         for (const [station_id, station] of Object.entries(Stations)) {
             if (Object.keys(station.vehicles).length > 0) {
                 for (const [vehicle_id, vehicle] of Object.entries(station.vehicles)) {
-                    if (vehicle.status === 9) {
+                    if (dispo_status.includes(vehicle.status)) {
                         const classId = station_id + "-station-vehicles";
                         if (station_id !== currentId) {
                             const startBody = "<tbody class='" + classId + "'>";
@@ -57,7 +60,52 @@ class MissionBoard {
         }
     }
 
+    SetNominalDeparture = (subCatId) => {
+        this.selectedSubCat = subCatId;
+        let dispo_status = [0, 7, 9, 25, 44]
+        if (callInProgress && !callPreparing && call !== null && this.selectedCat !== null
+            && this.selectedSubCat !== null && this.orderedStationsList.length > 0) {
+            this.setSelectedVehiclesAvailable();
+            let nominalJobs = this.categories.cat[this.selectedCat].subcat[this.selectedSubCat].nominal_jobs;
+            if (nominalJobs !== null) {
+                nominalJobs.forEach(jobsObj => {
+                    for (const [jobId, neededNb] of Object.entries(jobsObj)) {
+                        let foundCount = 0;
+                        let BreakException = {};
+                        try {
+                            this.orderedStationsList.forEach(station => {
+                                const stationId = station[0];
+                                if (foundCount !== neededNb) {
+                                    for (const [vehicleId, vehicle] of Object.entries(Stations[stationId].vehicles)) {
+                                        if (Vehicles[vehicleId].vehicle_job.includes(jobId) && foundCount !== neededNb
+                                        && dispo_status.includes(Stations[stationId].vehicles[vehicleId].status)) {
+                                            let check = $("#" + vehicleId + "_check");
+                                            if (!check[0].checked) {
+                                                ++foundCount;
+                                                check.trigger("click")
+                                                $("#" + vehicleId + "_select").val(jobId).change();
+                                            }
+                                        } else if (foundCount === neededNb)
+                                            break;
+                                    }
+                                } else
+                                    throw BreakException
+                            });
+                        } catch {}
+                    }
+                });
+            }
+        }
+    }
+
+    SetNominalDepartureFromLocationProcess = () => {
+        const subCatValue = $("#form-subcategorie").find("option:selected").attr("value");
+        if (subCatValue !== "defaultSubCatOption")
+            this.SetNominalDeparture(subCatValue);
+    }
+
     SetSubSelect = (value) => {
+        this.selectedCat = value;
         if (this.categories.cat[value] !== undefined) {
             let lOption = "#defaultSubCatOption";
             $('#form-subcategorie').find('option').remove().end().append('<option disabled selected value="defaultSubCatOption" id="defaultSubCatOption"> -- Choisissez une Sous-Catégorie -- </option>');
@@ -86,7 +134,9 @@ class MissionBoard {
         for (const [station_id, station] of Object.entries(Stations)) {
             for (const [vehicle_id, vehicle] of Object.entries(station.vehicles)) {
                 if (vehicle.status === 0) {
-                    this.SetVehicleLineStatus(station_id, vehicle_id, 9);
+                    let lineCheck = $("#" + vehicle_id + "_check");
+                    if (lineCheck[0].checked)
+                        lineCheck.trigger("click");
                 }
             }
         }
@@ -164,36 +214,37 @@ class MissionBoard {
 
     preparedUpdatedSelectedVehicle = (vehicleId) => {
         let isChecked = $("#" + vehicleId + "_check").is(":checked");
+        let stationId = Vehicles[vehicleId].station_id;
         if (isChecked) {
-            this.updatedSelectedVehicle(vehicleId, 1)
+            this.updatedSelectedVehicle(vehicleId, Stations[stationId].vehicles[vehicleId].status === 0 ? (1) : (-1))
         }
     }
 
     updatedSelectedVehicle = (id, add) => {
         let jobId = $("#" + id + "_select").children(":selected").val();
         let spanStr = "";
-        if (add === -1)
-            delete this.selectedList[id];
-        else
+
+        if (add < 0 && this.selectedList[id] !== undefined) {
+            delete this.selectedList[id]
+        } else if (add > 0)
             this.selectedList[id] = jobId;
-        let tmpJobArray = {}
+        let selectCntTmp = {};
         for (const [vehicleId, jobId] of Object.entries(this.selectedList)) {
-            if (tmpJobArray[jobId] === undefined)
-                tmpJobArray[jobId] = 1;
-            else {
-                if (tmpJobArray[jobId] >= 0)
-                    tmpJobArray[jobId] += add;
-                if (tmpJobArray[jobId] < 0)
-                    tmpJobArray[jobId] = 0;
-            }
+            if (selectCntTmp[jobId] === undefined)
+                selectCntTmp[jobId] = 1;
+            else
+                selectCntTmp[jobId] += 1
         }
-        if (Object.keys(tmpJobArray).length > 0) {
-            for (const [jobId, nb] of Object.entries(tmpJobArray)) {
-                spanStr += nb + " " + Jobs[jobId].name + ", ";
+
+        let selected = $(".vehicle-selected-span");
+        if (Object.keys(selectCntTmp).length > 0) {
+            for (const [job_id, selected_count] of Object.entries(selectCntTmp)) {
+                spanStr += selected_count + " " + Jobs[job_id].name + ", ";
             }
-            $(".vehicle-selected-span").text(spanStr.substring(0, spanStr.length - 2));
+            spanStr = spanStr.slice(0, spanStr.length - 2);
+            selected.text(spanStr)
         } else {
-            $(".vehicle-selected-span").text("N/A");
+            selected.text("N/A");
         }
     }
 
@@ -252,21 +303,22 @@ class MissionBoard {
     }
 
     engage = () => {
+        Stats.setMission(1);
         for (const [vehicleId, jobId] of Object.entries(this.selectedList)) {
             const stationId = Vehicles[vehicleId].station_id;
             Stations[stationId].vehicles[vehicleId].updateStatus(101)
-            console.log(Stations[stationId].vehicles[vehicleId])
         }
         this.clean();
     }
 
     clean = () => {
-        this.SetSelect();
         this.ClearInput();
         $("#vehicles-tables > tbody").each((index, body) => {
             $(body).remove()
         })
         this.setOriginaryVehicleTab();
+        this.selectedCat = null;
+        this.selectedSubCat = null;
         this.selectedList = {};
         this.missionPos = [];
         this.missionAddress = {};
@@ -286,6 +338,7 @@ class MissionBoard {
         $("#form-address").val("");
         $("#form-observations").val("");
         $(".btn-srv").prop("checked", false)
+        $(".vehicle-selected-span").text("N/A");
         this.setSelectedVehiclesAvailable();
     }
 }

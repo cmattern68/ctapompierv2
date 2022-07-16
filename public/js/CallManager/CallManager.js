@@ -1,8 +1,8 @@
 ManageCall = () => {
-    if (call === null && callInProgress === false && $('.call-popup').length === 0 && $('.dialog-popup').length === 0) {
+    if (call === null && !callInProgress && !callPreparing && $('.call-popup').length === 0 && $('.dialog-popup').length === 0) {
         //if (getRandomInt(30) === 18)
         if (!getRandomInt(1)) {
-            callInProgress = true;
+            callPreparing = true;
             findAddressInCountyPerimeter().then(address => {
                 call = new Call(address);
                 call.pinPopUp()
